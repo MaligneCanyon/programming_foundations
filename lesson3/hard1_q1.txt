@@ -1,0 +1,4 @@
+# the 'if' conditional evaluates to false, so the code on the following line
+# is not exec'd; none-the-less, greeting is initialized to nil by the if
+# conditional ...
+# ... which is inconsistent with what generally happens to undefined vars

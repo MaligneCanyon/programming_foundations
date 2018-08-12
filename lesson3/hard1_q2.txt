@@ -1,0 +1,12 @@
+puts greetings # => { a: 'hi there' }
+# var 'informal_greeting' refs the hash element :a and is subsequently mutated,
+# which mutates the hash element
+
+
+# can use .clone method to maintain original hash
+greetings = { a: 'hi' }
+informal_greeting = greetings[:a].clone
+informal_greeting << ' there'
+
+puts informal_greeting  #  => "hi there"
+puts greetings # => { a: 'hi' }

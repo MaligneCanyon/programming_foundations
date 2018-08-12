@@ -1,0 +1,18 @@
+  what is != and where should you use it?
+  put ! before something, like !user_name
+  put ! after something, like words.uniq!
+  put ? before something
+  put ? after something
+  put !! before something, like !!user_name
+
+! (negative or not) indicates the opposite of something
+! as the terminating char in a method name, indicates that the method mutates the calling object
+? (ternary operator) indicates a choice between two values for the var it is applied to
+? as the terminating char in a method name, indicates that the method returns T or F
+
+!= means not equal; use in a conditional statement
+!something means not something, as in not the value of user_name
+something! means a dangerous (usually mutating) operation
+?something is meaningless ???
+something? tests whether something has a true or false value
+!!something returns whether something has a truthy or falsey value

@@ -1,0 +1,13 @@
+A), B)
+# none of the vars outside the method are altered; vars in method are separate entities
+# that are re-assigned, so the method is pass by value
+"one is: one"
+"two is: two"
+"three is: three"
+
+C)
+# gsub mutates its 1st arg (replaces it w/ the 2nd arg); therefore the method mutates its
+params and is pass by ref; so,
+"one is: two"
+"two is: three"
+"three is: one"

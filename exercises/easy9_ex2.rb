@@ -1,0 +1,17 @@
+def twice(num) # no strings attached
+  num_digits = num.to_s.size
+  quotient, remainder = num.divmod(10**(num_digits / 2))
+  num_digits.even? && quotient == remainder ? num : num * 2
+  # actually, don't need to check num_digits.even?
+end
+
+p twice(37) == 74
+p twice(44) == 44
+p twice(334433) == 668866
+p twice(444) == 888
+p twice(107) == 214
+p twice(103103) == 103103
+p twice(3333) == 3333
+p twice(7676) == 7676
+p twice(123_456_789_123_456_789) == 123_456_789_123_456_789
+p twice(5) == 10

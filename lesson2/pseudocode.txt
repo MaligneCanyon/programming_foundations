@@ -1,0 +1,51 @@
+write out pseudo-code (both casual and formal) that does the following:
+
+  1.  a method that returns the sum of two integers
+  2.  a method that takes an array of strings, and returns a string that is all those strings concatenated together
+  3.  a method that takes an array of integers, and returns a new array with every other element
+
+1.
+acquire 2 integers
+add the integers together
+return the sum of the integers
+
+START
+GET int1
+GET int2
+SET sum = int1 + int2
+PRINT sum
+END
+
+2.
+acquire an array of strs
+initialize the output str to nil
+iterate over the array, appending each str to the output str
+return the output str
+
+START
+GET array
+SET output_str = ''
+SET ndx = 0
+WHILE ndx < array.size
+  SET output_str += array[ndx]
+  SET ndx += 1
+PRINT output_str
+END
+
+3.
+acquire an array of ints
+initialize the output array to nil
+iterate over the input array
+  copy every other element to the output array
+return the output array
+
+START
+GET input_array
+SET output_array = []
+SET ndx = 0
+WHILE ndx < input_array.size
+  IF ndx.is_odd?
+    SET output_array += input_array[ndx]
+  ndx += 1
+PRINT output_array
+END
