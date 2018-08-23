@@ -35,7 +35,7 @@ arr = []
   if v < 6
     arr << num
   else
-    puts "The number #{num} " +
+    puts "The number #{num} " \
       (arr.include?(num) ? "appears" : "does not appear") + " in #{arr}."
   end
 end

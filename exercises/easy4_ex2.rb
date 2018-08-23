@@ -6,12 +6,12 @@ end
 
 
 def century(year)
-  h = Hash.new("th") # 'th' is default suffix; teen centuries plus centuries ending in 0, 4-9
-  h[1] = "st"
-  h[2] = "nd"
-  h[3] = "rd"
+  h = Hash.new('th') # 'th' is default suffix; teen centuries plus centuries ending in 0, 4-9
+  h[1] = 'st'
+  h[2] = 'nd'
+  h[3] = 'rd'
   num = century_num(year)
-  suffix = (((num % 100) / 10) == 1 ? "th" : h[num % 10])
+  suffix = ((num % 100) / 10) == 1 ? 'th' : h[num % 10] # teens : others
   num.to_s + suffix
 end
 

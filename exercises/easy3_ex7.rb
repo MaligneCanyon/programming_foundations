@@ -1,8 +1,6 @@
 def oddities(arr1)
   arr2 = []
-  arr1.each_with_index do |v,i|
-    arr2 << v if i.even?
-  end
+  arr1.each_with_index { |v, i| arr2 << v if i.even? }
   arr2
 end
 

@@ -5,4 +5,4 @@ array1.each { |value| value.upcase! if value.start_with?('C', 'S') }
 puts array2
 
 # puts the array w/ upcased names that begin w/ C or S
-# array1 and array2 still point to the same data
+# array1 and array2 still point to the same data (array 1 was not reassigned)

@@ -11,17 +11,10 @@ H = {
   '9' => 9
 }
 
-
 def string_to_integer(str)
   arr = str.chars.reverse
-  #p arr
   total = 0
-  arr.each_with_index do |c, i|
-    num = H[c]
-    #p num
-    total += num * 10**i
-    #p total
-  end
+  arr.each_with_index { |c, i| total += H[c] * 10**i }
   total
 end
 

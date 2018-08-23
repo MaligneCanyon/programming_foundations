@@ -1,10 +1,5 @@
-def reverse_words (str)
-  arr = str.split
-  arr.each do |word|
-    word.reverse! if word.length >= 5
-    #puts word
-  end
-  arr.join(" ")
+def reverse_words(str)
+  str.split.map { |word| word.size < 5 ? word : word.reverse }.join(' ')
 end
 
 puts reverse_words('Professional')          # => lanoisseforP

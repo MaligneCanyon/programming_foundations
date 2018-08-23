@@ -1,16 +1,25 @@
-def multisum(target)
-  mult = [3, 5]
+# def multisum(target)
+#   mult = [3, 5]
+#   arr = []
+#   mult.each do |mult|
+#     num = mult
+#     while num <= target do
+#       arr << num unless arr.include?(num)
+#       num += mult
+#     end
+#   end
+#   arr.reduce(:+)
+# end
+
+def multisum(num)
   arr = []
-  mult.each do |mult|
-    num = mult
-    while num <= target do
-      arr << num unless arr.include?(num)
-      num += mult
-      p arr
-    end
+  3.step(by: 3, to: num) do |value|
+    arr << value
   end
-  p arr.reduce(:+)
-  arr.reduce(:+)
+  5.step(by: 5, to: num) do |value|
+    arr << value
+  end
+  arr.uniq.reduce(:+)
 end
 
 p multisum(3) == 3

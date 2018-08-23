@@ -1,3 +1,18 @@
+# def fibonacci(nth)
+#   return 1 if nth < 3
+#   older, old = [1, 1]
+#   3.upto(nth) do
+#     older, old = [old, older + old]
+#   end
+#   old
+# end
+
+
+# def fibonacci_last(num)
+#   fibonacci(num).to_s[-1].to_i
+# end
+
+
 def fibonacci_last(nth)
   return 1 if nth < 3
   older, old = [1, 1]

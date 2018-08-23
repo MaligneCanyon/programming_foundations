@@ -6,7 +6,9 @@
 # - print a diamond pattern (a series of spaces and stars) with max width
 #   equal to the input Integer
 # rules:
-# - n == 9
+# - n == max width == number of rows
+# - i == current row number
+# - if n == 9
 #   spaces 4 3 2 1 0 1 2 3 4
 #   stars  1 3 5 7 9 7 5 3 1
 # - if k = (n - 1) / 2

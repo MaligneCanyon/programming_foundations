@@ -12,20 +12,20 @@
 # - array (list of words)
 
 NUMS = {
-  'zero'  => 0,
-  'one'   => 1,
-  'two'   => 2,
-  'three' => 3,
-  'four'  => 4,
-  'five'  => 5,
-  'six'   => 6,
-  'seven' => 7,
-  'eight' => 8,
-  'nine'  => 9
+  'zero'  => '0',
+  'one'   => '1',
+  'two'   => '2',
+  'three' => '3',
+  'four'  => '4',
+  'five'  => '5',
+  'six'   => '6',
+  'seven' => '7',
+  'eight' => '8',
+  'nine'  => '9'
 }
 
 def word_to_digit(str)
-  NUMS.keys.each { |key| str.gsub!(/\b#{key}\b/i, NUMS[key].to_s) }
+  NUMS.keys.each { |key| str.gsub!(/\b#{key}\b/i, NUMS[key]) }
   str
 end
 

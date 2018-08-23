@@ -19,7 +19,7 @@
 #       if current element > next element
 #         swap current element, next element
 #         set swap flag to true
-#     stop if swap flag == true
+#     stop unless swap flag == true
 
 # Note: after every pass, all elements after the last swap are sorted, and do not need to be checked again
 

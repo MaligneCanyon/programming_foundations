@@ -40,13 +40,22 @@ text = <<-PASSAGE
   earth.
 PASSAGE
 
+
+# alternate
+# file = "file.txt"
+# file_handle = File.open(file, "r")
+# text = File.read(file_handle)
+# file_handle.close
+
+
 sentences = text.split(/[.!?]/)
 most_words = 0
+longest_sentence = ''
 sentences.each do |sentence|
   num_words = sentence.split.size
-  if num_words > most_words
-    longest_sentence = sentence
+  if most_words < num_words
     most_words = num_words
+    longest_sentence = sentence
   end
 end
 puts most_words, longest_sentence

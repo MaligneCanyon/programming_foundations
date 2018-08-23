@@ -1,35 +1,28 @@
-# inputs:
-# - String
-# outputs:
-# - T or F
+# input: str
+# output: boolean
 # reqs:
-# - take a str as single arg
-# - return T or F depending on whether all parentheses is str are balanced
+# - write a method that takes a string as argument
+# - return true if all parentheses in the string are properly p balanced, false otherwise
 # rules:
-# - each '(' must be followed at some pt by a ')'), ie.
-#   - str.count('(') always >= str.count(')') while traversing the str
-#   - str.count('(') always == str.count(')') after traversing the str
-# datastruct:
-# - Integer (count of ( and ) chars)
+# - matching '(' and ')' pairs
+# - p balanced pairs must each start with a '(', not a ')'
+# datastruct: int
 # algo:
-# - for char in the str
-#   - compute a running count of the number of (
-#   - compute a running count of the number of )
-#   - return F if number of ) > number of (
-# - return T if number of ) == number of (, otherwise return F
+# - init a counter at 0
+# - iterate thru the str
+#   - if a '(' is found, increment the counter
+#   - if a ')' is found, increment the counter
+#   - if the counter is ever < 0, return false
+# - return true if the counter == 0, false otherwise
 
 def balanced?(str)
-  count_open = 0
-  count_close = 0
+  counter = 0
   str.each_char do |char|
-    if char == '('
-      count_open += 1
-    elsif char == ')'
-      count_close += 1
-      return false if count_close > count_open
-    end
+    counter += 1 if char == '('
+    counter -= 1 if char == ')'
+    return false if counter < 0
   end
-  count_close == count_open
+  counter == 0
 end
 
 p balanced?('What (is) this?') == true

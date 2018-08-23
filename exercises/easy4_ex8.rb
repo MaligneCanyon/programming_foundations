@@ -11,20 +11,15 @@ H = {
   '9' => 9
 }
 
-
 def string_to_signed_integer(str)
   arr = str.chars.reverse
-  #p arr
   total = 0
   arr.each_with_index do |c, i|
     if c == '-'
       total *= -1
     elsif c != '+'
-      num = H[c]
-      #p num
-      total += num * 10**i
+      total += H[c] * 10**i
     end
-    #p total
   end
   total
 end

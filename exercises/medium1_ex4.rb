@@ -19,34 +19,47 @@
 #     if the switch state is T (ie ON)
 #       copy the array index to an output array
 
-def truthy_array_indexer(arr)
-  new_arr = []
-  arr.each_with_index { |v, i| new_arr << i + 1 if v }
-  # p new_arr
-  new_arr
-end
-
 def array_init(size, value)
   arr = []
   (0...size).each { |_| arr << value }
   arr
 end
 
+# def truthy_array_indexer(arr)
+#   new_arr = []
+#   arr.each_with_index { |v, i| new_arr << i + 1 if v }
+#   # p new_arr
+#   new_arr
+# end
+
+# def lights(n)
+#   # p "n == #{n}"
+#   arr = array_init(n, false)
+#   # p arr
+#   (1..n).each do |i|
+#     k = 0
+#     loop do
+#       k += i
+#       break if k > n
+#       arr[k - 1] = !arr[k - 1]
+#       # p "i == #{i}, k == #{k}"
+#     end
+#   end
+#   # p arr
+#   truthy_array_indexer(arr)
+# end
+
 def lights(n)
-  # p "n == #{n}"
+  new_arr = []
   arr = array_init(n, false)
-  # p arr
-  (1..n).each do |i|
-    k = 0
-    loop do
-      k += i
-      break if k > n
-      arr[k - 1] = !arr[k - 1]
-      # p "i == #{i}, k == #{k}"
+  1.upto(n) do |step_size|
+    start_ndx = step_size - 1
+    start_ndx.step(by: step_size, to: n - 1) do |ndx|
+      arr[ndx] = !arr[ndx]
     end
   end
-  # p arr
-  truthy_array_indexer(arr)
+  arr.each_with_index { |v, i| new_arr << i + 1 if v == true }
+  new_arr
 end
 
 p lights(5) == [1, 4]
