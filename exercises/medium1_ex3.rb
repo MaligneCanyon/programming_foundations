@@ -1,3 +1,22 @@
+# inputs:
+# - Integer (num to rotate)
+# outputs:
+# - Integer (the rotated num)
+# reqs:
+# - determine the maximum rotation of the num
+#   - rotate all the digits, then all but the 1st digit,
+#     then all but the first 2 digits, etc
+# - rtn the resulting num
+# rules:
+# - n is always a pos int (assumed)
+# struct:
+# - Array
+# algo:
+# - calc the num of digits in the num
+# - for ndx == the num of digits downto 2
+#   - call the rotate_rightmost_digits on the last ndx digits of the num
+# - rtn the rotated num
+
 def rotate_array(array)
   array[1..-1] + [array[0]]
 end

@@ -1,3 +1,25 @@
+# inputs:
+# - a Rational Number (two ints reping the num and denom of a rat num)
+# outputs:
+# - Array (an arr of denoms that are part of an Egyptian Fraction rep of the num)
+# reqs:
+# - take a Rational Number
+# - rtn an arr reping an Egyptian Fraction rep of the num
+# struct:
+# - Array (to hold denoms)
+# algo:
+# - init the output arr to []
+# - init a sum at 0
+# - init the denom at 1
+# - while the sum is < rat
+#   - temporarily add rat(1/denom) to the sum
+#   - if the sum > rat
+#     - throw away the new sum
+#   - else
+#     - sum = new sum
+#     - copy denom to the output arr
+#   - increment the denom
+
 def egyptian(rat_num)
   arr = []
   sum = 0
@@ -20,6 +42,21 @@ end
 p egyptian(Rational(2, 1))    # -> [1, 2, 3, 6]
 p egyptian(Rational(137, 60)) # -> [1, 2, 3, 4, 5]
 p egyptian(Rational(3, 1))    # -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 230, 57960]
+
+# inputs:
+# - Array (an arr of denoms that are part of an Egyptian Fraction rep of the num)
+# outputs:
+# - a Rational Number (two ints reping the num and denom of a rat num)
+# reqs:
+# - take an arr reping an Egyptian Fraction rep of the num
+# - rtn a Rational Number
+# struct:
+# - num (to hold sum of fractional elements)
+# algo:
+# - init a sum at 0
+# - for each element in the arr
+#   - add rat(1/denom) to the sum
+# - rtn the sum
 
 def unegyptian(arr)
   sum = 0

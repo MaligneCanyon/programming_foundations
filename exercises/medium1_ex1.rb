@@ -1,29 +1,19 @@
 # inputs:
-# - array
+# - Array
 # outputs:
-# - new array
+# - Array
 # reqs:
-# - move the 1st array element to the end of a copy of the array
-# - return the new array
+# - move the 1st element to the end of the arr
+# - the original arr should not be modified
 # rules:
 # - none
-# datastruct
-# - array
+# struct:
+# - Array
 # algo:
-# - map the input array to a new array
-# - remove the 1st element of the new array
-# - append the 1st element to the end of the new array
+# - return arr[1...arr.size] + [arr[0]]
 
-# def rotate_array (arr)
-#   new_arr = arr.map { |v| v }
-#   element = new_arr.shift
-#   new_arr.push(element)
-#   # p new_arr
-#   # new_arr
-# end
-
-def rotate_array(array)
-  array[1..-1] + [array[0]]
+def rotate_array(arr)
+  arr[1...arr.size] + [arr[0]]
 end
 
 def rotate_string(str)

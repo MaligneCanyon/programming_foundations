@@ -1,26 +1,39 @@
-def palindrome?(str)
-  # p str.reverse, str
-  str.size > 1 && str.reverse == str
-end
+# inputs:
+# - String
+# outputs:
+# - Array (of substrs)
+# reqs:
+# - rtn a list of all palindromic substrs of a str
+# - substrs should be ordered by where in the str the substr begins
+# rules:
+# - single char strs are not palindromes
+# struct:
+# - Array
+# algo:
+# - init the output arr to []
+# - call substrings
+# - select substrings from the resulting arr that are palindromic
+#   - select if substr == substr.reverse && substr.size > 1
+# - rtn the resulting arr
 
 def substrings_at_start(str)
   arr = []
-  (1..str.length).each { |i| arr << str.slice(0, i) }
+  (0...str.size).each { |ndx| arr << str[0..ndx] }
   arr
 end
 
 def substrings(str)
   arr = []
-  (0...str.length).each do |i|
-    arr << substrings_at_start(str.slice(i, str.length - i))
-  end
+  (0...str.size).each { |ndx| arr << substrings_at_start(str[ndx..-1]) }
   arr.flatten
 end
 
+def palindrome?(str)
+  str.reverse == str && str.size > 1
+end
+
 def palindromes(str)
-  arr = []
-  substrings(str).each { |substr| arr << substr if palindrome?(substr) }
-  arr
+  substrings(str).select { |substr| palindrome?(substr) }
 end
 
 p palindromes('abcd') == []

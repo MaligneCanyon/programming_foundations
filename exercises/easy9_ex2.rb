@@ -1,9 +1,38 @@
-def twice(num) # no strings attached
-  num_digits = num.to_s.size
-  quotient, remainder = num.divmod(10**(num_digits / 2))
-  num_digits.even? && quotient == remainder ? num : num * 2
-  # actually, don't need to check num_digits.even?
+# inputs:
+# - Integer
+# outputs:
+# - Integer
+# reqs:
+# - take an int arg
+# - rtn the num if it is a dble num
+# - rtn the num * 2 otherwise
+# struct:
+# - String (for comparing halves of the input int)
+# algo:
+# - determine whether the input num is a dble num
+#   - dble num if
+#     - str = num.to_s
+#     - str.size.even?
+#     - str[0...str.size/2] == str[str.size/2...str.size]
+# - rtn the num if it is a dble num
+# - rtn the num * 2 otherwise
+
+def dble_num?(num)
+  str = num.to_s
+  str.size.even? && (str[0...str.size/2] == str[str.size/2...str.size])
 end
+
+def twice(num)
+  dble_num?(num) ? num : num * 2
+end
+
+# ALT VERSION
+# def twice(num) # no strings attached
+#   num_digits = num.to_s.size
+#   quotient, remainder = num.divmod(10**(num_digits / 2))
+#   num_digits.even? && quotient == remainder ? num : num * 2
+#   # actually, don't need to check num_digits.even?
+# end
 
 p twice(37) == 74
 p twice(44) == 44

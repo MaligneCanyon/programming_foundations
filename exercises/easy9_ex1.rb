@@ -1,25 +1,24 @@
 # inputs:
-# - array (two or string elements)
-# - hash (two keys, :title and :occupation, and related values)
+# - Array (2+ elements)
+# - Hash (2 key:value pairs)
 # outputs:
-# - string
+# - String (formatted text)
 # reqs:
-# - combine the name, title and occupation data in an output string
+# - take 2 args
+#   - arr w/ 2+ elements representing a name
+#   - hsh w/ 2  elements representing a title and occupation
+# - rtn a greeting that uses the full name, title and occupation
 # rules:
-# - none
-# datastruct:
-# - array to hold title and occupation
-# - string (for output)
+# - output str format
+#   'Hello, arr[0] arr[1] arr[2]! Nice to have a hsh[:title] hsh[:occupation] around.'
+# struct:
+# - String (formatted output)
 # algo:
-# - combine the strings in the input array to form a name string
-# - obtain the data values from the hash
-# - combine the values of the hash to form a titled_occupation string
-# - combine the name and titled_occupation strings to form an output string
+# - build the str using the arr and hsh values
+# - rtn the str
 
-def greetings(arr, hash)
-  name = arr.join(' ')
-  titled_occupation = hash.values.join(' ')
-  "Hello, #{name}! Nice to have a #{titled_occupation} around."
+def greetings(arr, hsh)
+  'Hello, #{arr.join(' ')}! Nice to have a #{hsh[:title]} #{hsh[:occupation]} around.'
 end
 
 p greetings(['John', 'Q', 'Doe'], { title: 'Master', occupation: 'Plumber' })

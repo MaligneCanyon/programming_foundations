@@ -13,7 +13,7 @@
 #   - if a '(' is found, increment the counter
 #   - if a ')' is found, increment the counter
 #   - if the counter is ever < 0, return false
-# - return true if the counter == 0, false otherwise
+# - at the end of the str, return true if the counter == 0, false otherwise
 
 def balanced?(str)
   counter = 0

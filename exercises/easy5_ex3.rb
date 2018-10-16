@@ -6,16 +6,14 @@
 # - none
 
 MINS_PER_HOUR = 60
-HOURS_PER_DAY = 24
-MINS_PER_DAY = MINS_PER_HOUR * HOURS_PER_DAY
-
+MINS_PER_DAY  = 1440
 
 def after_midnight(str)
-  arr = str.split(":")
-  hour = arr[0].to_i
-  min = arr[1].to_i
-
-  #p arr, hour, min, hour * MINS_PER_HOUR + min
+  # arr = str.split(":")
+  # hour = arr[0].to_i
+  # min  = arr[1].to_i
+  hour = str[0,2].to_i
+  min  = str[3,2].to_i
   (hour * MINS_PER_HOUR + min) % MINS_PER_DAY
 end
 

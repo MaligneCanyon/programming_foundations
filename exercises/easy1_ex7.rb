@@ -1,11 +1,19 @@
-# def stringy (num, option = 1)
-#   str = option.to_s
-#   1.upto(num - 1) do |v|
-#     #str << (v.odd? ? "0" : "1") # base case
-#     str << (v.odd? ? (option == 1 ? "0" : "1") : (option == 1 ? "1" : "0"))
-#   end
-#   str
-# end
+# inputs:
+# - Integer (string length)
+# outputs:
+# - String (alternating series of 1s and 0s)
+# reqs:
+# - return a string of alternating 1s and 0s
+# - string length is equal to the input int
+# rules:
+# - always start with 1
+# struct:
+# - String (build the output str)
+# algo:
+# - init the output string to null
+# - for the input number of times do
+#   - alternately add a 1 or 0 to the output string
+# - return the output string
 
 def stringy(num, option = 1)
   str = ''
@@ -14,11 +22,6 @@ def stringy(num, option = 1)
   num.times { |ndx| str << (ndx.even? ? first_char : second_char) }
   str
 end
-
-# puts stringy(6)
-# puts stringy(9)
-# puts stringy(4)
-# puts stringy(7)
 
 puts stringy(6, 0) == '010101'
 puts stringy(6) == '101010'

@@ -1,6 +1,23 @@
-def oddities(arr1)
+# inputs:
+# - array
+# outputs:
+# - array
+# reqs:
+# - take an arr as input
+# - rtn another arr containing the elements at even numbered indices in the input arr
+# rules:
+# - odd elements == elements at even numbered indices
+# struct:
+# - array
+# algo:
+# - take an arr input
+# - init a 2nd arr to []
+# - copy elements in the input arr at an even numbered ndx to the 2nd arr
+# - rtn the 2nd arr
+
+def oddities(arr)
   arr2 = []
-  arr1.each_with_index { |v, i| arr2 << v if i.even? }
+  arr.each_with_index { |elem, ndx| arr2 << elem if ndx.even? }
   arr2
 end
 

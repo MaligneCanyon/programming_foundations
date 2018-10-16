@@ -1,5 +1,5 @@
 # inputs:
-# - Array (nums to be sorted)
+# - array (nums to be sorted)
 # outputs:
 # - none (we will mutate the input Array)
 # reqs:
@@ -10,8 +10,8 @@
 # - mutate the input array as-we-go
 # rules:
 # - stop if number of swap events == 0 for a given pass
-# datastruct:
-# - single array
+# struct:
+# - array
 # algo:
 # - loop
 #     initialize swap flag to false

@@ -1,3 +1,18 @@
+# inputs:
+# - String
+# outputs:
+# - String
+# reqs:
+# - take a str arg
+# - rtn T or F depending on whether all alphabetic chars in the str are uppercase
+# rules:
+# - none
+# struct:
+# - n/r
+# algo:
+# - test whether
+#   str == str.upcase
+
 def uppercase?(str)
   str.upcase == str
 end

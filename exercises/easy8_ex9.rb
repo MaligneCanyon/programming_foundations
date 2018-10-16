@@ -1,3 +1,19 @@
+# - Integer
+# outputs:
+# - Integer
+# reqs:
+# - take a positive int
+# - rtn the int w/ its digits reversed
+# rules:
+# - ok to drop trailing zeros
+# struct:
+# - String (allows reverse nethod)
+# algo:
+# - convert the int to a str
+# - reverse the str
+# - convert the str to an int
+# - output the int
+
 def reversed_number(num)
   num.to_s.reverse.to_i
 end

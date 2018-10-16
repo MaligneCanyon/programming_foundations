@@ -10,7 +10,7 @@ hsh1 = {first: [1, 2, [3]]}
 hsh1[:first][-1][0] = 4
 p hsh1
 
-
 hsh2 = {['a'] => {a: ['1', :two, 3], b: 4}, 'b' => 5}
+# hsh2.values.first.values.first[-1] = 4
 hsh2[['a']][:a][-1] = 4
 p hsh2

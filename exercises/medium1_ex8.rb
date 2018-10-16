@@ -8,8 +8,12 @@
 #   F(1) = 1
 #   F(2) = 1
 #   F(n) = F(n - 1) + F(n - 2) where n > 2
-# datastruct:
-# - none
+# struct:
+# - Integer
+# algo:
+# - rtn 1 if n < 3
+# - otherwise, rtn fib(n-1) + fib(n-2)
+
 
 # def fibonacci(nth)
 #   return 1 if nth < 3
@@ -38,3 +42,4 @@ p fibonacci(5) == 5
 p fibonacci(12) == 144
 p fibonacci(20) == 6765
 p fibonacci(40)
+p fibonacci(10100)

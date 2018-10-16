@@ -1,28 +1,25 @@
-LAST_NDX = -1
-
-def reverse!(arr)
-  midpoint_ndx = arr.size / 2
-  #p midpoint_ndx
-  ndx = 0
-  while ndx < midpoint_ndx
-    arr[ndx], arr[LAST_NDX - ndx] = arr[LAST_NDX - ndx], arr[ndx]
-    ndx += 1
-  end
-  #p arr
-  arr
-end
+# inputs:
+# - Array
+# outputs:
+# - Array
+# reqs:
+# - take an arr as an arg
+# - reverse its elements (but do not mutate the arr)
+# - return the reversed arr
+# rules:
+# - none
+# struct:
+# - Array
+# algo:
+# - for each element in the arr
+#   - unshift the element into a new arr
+# - return the new arr
 
 def reverse(arr)
-  new_arr = arr.map { |v| v }
-  p arr.object_id, new_arr.object_id
-  reverse!(new_arr)
+  new_arr = []
+  arr.each { |elem| new_arr.unshift(elem) }
+  new_arr
 end
-
-# def reverse(arr) # works, but more complicated
-#   new_arr = arr.each_with_object([]) { |v, a| a << v }
-#   p arr.object_id, new_arr.object_id
-#   reverse!(new_arr)
-# end
 
 p reverse([1,2,3,4]) == [4,3,2,1]          # => true
 p reverse(%w(a b c d e)) == %w(e d c b a)  # => true

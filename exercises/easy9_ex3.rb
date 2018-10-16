@@ -1,3 +1,17 @@
+# inputs:
+# - Integer (presumed)
+# outputs:
+# - Integer
+# reqs:
+# - rtn the neg of the input num if the num is > 0, otherwise rtn the num
+# rules:
+# - none
+# struct:
+# - Integer
+# algo:
+# - rtn -num if num > 0
+# - rtn num otherwise
+
 def negative(num)
   num.positive? ? -num : num
 end

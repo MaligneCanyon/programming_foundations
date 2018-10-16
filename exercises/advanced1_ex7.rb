@@ -10,37 +10,39 @@
 # datastruct:
 # - Array (to hold the elements from the arrays; dbls as the output array)
 # algo:
-# - calc the size of the output array (sum of sizes of input arrays)
-# - init an ndx for each input array to zero
-# - for 1 upto the size of the output array
-#     if there are no more elements in the 1st input array, add the remainder of the 2nd input array to the output array
-#     if there are no more elements in the 2nd input array, add the remainder of the 1st input array to the output array
-#     otherwise, compare the value of the elements in the two input arrays
-#       if the value in the 1st input array is < the value in the 2nd input array,
-#         add the value in the 1st input array to the output array and increment the ndx for the 1st array
-#       else
-#         add the value in the 2nd input array to the output array and increment the ndx for the 2nd array
+# - init a new arr to []
+# - init an arr1 ndx to 0
+# - init an arr2 ndx to 0
+# - while arr1 ndx and arr2 ndx are less than their respective arr sizes
+#   - if arr1 ndx is at the arr end, copy the arr2 elem to the new arr
+#     - increment the arr2 ndx
+#   - elsif arr2 ndx is at the arr end, copy the arr1 elem to the new arr
+#     - increment the arr1 ndx
+#   - else compare the elements from the two arrs
+#     - copy the smaller elem to the new arr
+#     - increment the ndx for the source arr for the smaller element
+# - rtn the new arr
 
 def merge(arr1, arr2)
   new_arr = []
-  new_arr_size = arr1.size + arr2.size
-  arr1_ndx, arr2_ndx = 0, 0
-  1.upto(new_arr_size) do
-    if arr1_ndx == arr1.size # arr1 is fully processed
-      new_arr += arr2[arr2_ndx..-1]
+  ndx1, ndx2 = 0, 0
+  loop do
+    break if ndx1 == arr1.size && ndx2 == arr2.size
+    if ndx1 == arr1.size
+      new_arr += arr2[ndx2...arr2.size]
       break
-    elsif arr2_ndx == arr2.size # arr2 is fully processed
-      new_arr += arr1[arr1_ndx..-1]
+    elsif ndx2 == arr2.size
+      new_arr += arr1[ndx1...arr1.size]
       break
-    elsif arr1[arr1_ndx] < arr2[arr2_ndx]
-      new_arr << arr1[arr1_ndx]
-      arr1_ndx += 1
+    elsif arr1[ndx1] > arr2[ndx2]
+      new_arr << arr2[ndx2]
+      ndx2 += 1
     else
-      new_arr << arr2[arr2_ndx]
-      arr2_ndx += 1
+      new_arr << arr1[ndx1]
+      ndx1 += 1
     end
   end
-  # p "arr1_ndx = #{arr1_ndx}, arr2_ndx = #{arr2_ndx}"
+  # p new_arr
   new_arr
 end
 

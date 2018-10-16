@@ -10,3 +10,8 @@ books.sort! do |a, b|
   a[:published].to_i <=> b[:published].to_i
 end
 puts books
+
+books.sort_by! do |hsh|
+  hsh[:published]
+end
+puts books

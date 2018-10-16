@@ -5,20 +5,11 @@
 # rules
 # - only words and spaces
 
-
 def swap(str)
   arr = str.split
-  #p arr
-  arr.map! do |word|
-    subarr = word.chars
-    #p subarr
-    subarr[0], subarr[-1] = subarr[-1], subarr[0]
-    #p subarr
-    subarr.join
-  end
-  arr.join(" ")
+  arr.map { |word| word[0], word[-1] = word[-1], word[0] }
+  arr.join(' ')
 end
-
 
 p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
 p swap('Abcde') == 'ebcdA'

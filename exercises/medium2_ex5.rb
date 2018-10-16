@@ -9,7 +9,7 @@
 # rules:
 # - shortest + middle > longest (valid)
 # - shortest, middle, longest > 0 (valid)
-# - shortest == middle == longest > 0 (equilateral)
+# - shortest == longest (equilateral)
 # - shortest == middle or middle == longest (isosceles)
 # - shortest != middle != longest (scalene)
 # datastruct:

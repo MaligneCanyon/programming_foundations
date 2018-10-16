@@ -1,18 +1,45 @@
-puts "Enter the amount of the bill:"
+# inputs:
+# - prompt for a float (bill amount)
+# - prompt for a float (tip percentage)
+# outputs:
+# - print string
+# reqs:
+# - prompt for an amount
+# - prompt for a tip percentage
+# - output a sting showing the tip amt
+# - output a sting showing the total amt
+# rules:
+# - none
+# struct:
+# - numeric
+# - string
+# algo:
+# - prompt for an amount
+# - prompt for a tip percentage
+# - calc the tip
+# - calc the total
+# - output a sting showing the tip amt
+# - output a sting showing the total amt
+
+def prompt(msg)
+  print "#{msg} "
+end
+
+prompt 'What is the bill?'
 bill = gets.to_f
-puts "Enter the \% tip:"
+prompt 'What is the tip percentage?'
+tip_percentage = gets.to_f
+tip = bill * tip_percentage / 100
+total = bill + tip
 
-tip_percent = gets.to_f
-tip = bill * tip_percent / 100
-
-# this rounds to 1 decimal place !
+# annoyingly, this rounds to 1 decimal place:
 # puts "The tip is $#{tip.round(2)}"
-# puts "The total is $#{(bill + tip).round(2)}"
+# puts "The total is $#{total.round(2)}"
 
 # this works
-# puts "The tip is $#{format("%.2f", tip)}"
-# puts "The total is $#{format("%.2f", bill + tip)}"
+# puts format("The tip is $%.2f", tip)
+# puts format("The total is $%.2f", total)
 
 # so does this
-puts "The tip is $#{"%.2f" % tip}"
-puts "The total is $#{"%.2f" % (bill + tip)}"
+puts "The tip is $%.2f" % tip
+puts "The total is $%.2f" % total

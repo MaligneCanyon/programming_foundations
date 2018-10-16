@@ -1,17 +1,19 @@
-# def fibonacci(nth)
-#   return 1 if nth < 3
-#   older, old = [1, 1]
-#   3.upto(nth) do
-#     older, old = [old, older + old]
-#   end
-#   old
-# end
-
-
-# def fibonacci_last(num)
-#   fibonacci(num).to_s[-1].to_i
-# end
-
+# inputs:
+# - Integer
+# outputs:
+# - Integer
+# reqs:
+# - comp the last digit of the nth fib num
+# rules:
+# - only the last digit is of consequence
+# algo:
+# - rtn 1 if n < 3
+# - init an arr to [1, 1]
+# - for 3 upto n
+#   - simultaneously
+#     - set the 2nd last arr element equal to the last element
+#     - set the last arr element equal to (the 2nd last plus the last element) modulus 10
+# - rtn the last arr element
 
 def fibonacci_last(nth)
   return 1 if nth < 3

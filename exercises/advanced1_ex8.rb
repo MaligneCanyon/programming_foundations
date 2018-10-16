@@ -36,16 +36,13 @@ end
 # - sort an array containing one type of data (all nums or all strs)
 # - recursive sorting
 # datastruct:
-# - array to hold intermediate values
-# algo: *** this doesn't work ***
-# - for each pair of elements in the input array,
-#   - break down pairs of elements into their own subarray
-#   - for each subarray
-#     - break each subarray into two tertiary arrays (each containing a single element)
-#     - call merge to sort the elements of the tertiary arrays
-#   - call merge to sort the elements of the subarrays
-# - call merge to sort any remaining (odd numbered) element
-# - output the sorted array
+# - Array (to hold subarrays)
+# algo:
+# - rtn the arr if the arr only contains one element; otherwise,
+# - split the arr into two subarrays
+# - call merge_sort on each of the two subarrays
+# - after the arr has been fully broken down,
+#   call merge to sort and recombine the subarr elements
 
 def merge_sort(array)
   # p array

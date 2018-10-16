@@ -29,7 +29,7 @@ def prompt(msg)
 end
 
 
-def hand(user, cards, total)
+def display_hand(user, cards, total)
   puts "#{user} cards are #{cards}; total is #{total}"
 end
 
@@ -50,8 +50,8 @@ def init_deck
   dealer_cards = deck.pop(2)
 
   # p deck
-  hand("Player", player_cards, calc_total(player_cards))
-  # hand("Dealer", dealer_cards, calc_total(dealer_cards))
+  display_hand("Player", player_cards, calc_total(player_cards))
+  # display_hand("Dealer", dealer_cards, calc_total(dealer_cards))
   puts "Dealer has a #{dealer_cards[1]}"
 
   return deck, player_cards, dealer_cards
@@ -103,11 +103,8 @@ def player_turn(deck, player_cards)
     break if answer == 'stay'
     player_cards << deck.pop
     total = calc_total(player_cards)
-    hand("Player", player_cards, total)
-    if busted?(total)
-      prompt "Busted !"
-      return []
-    end
+    display_hand("Player", player_cards, total)
+    return [] if busted?(total)
   end
   player_cards
 end
@@ -116,11 +113,8 @@ end
 def dealer_turn(deck, dealer_cards)
   loop do
     total = calc_total(dealer_cards)
-    hand("Dealer", dealer_cards, total)
-    if busted?(total)
-      prompt "Busted !"
-      return []
-    end
+    display_hand("Dealer", dealer_cards, total)
+    return [] if busted?(total)
     break if total > 16
     dealer_cards << deck.pop
   end
@@ -129,8 +123,8 @@ end
 
 
 def compare_cards(player_cards, dealer_cards)
-  result = (calc_total(player_cards) <=> calc_total(dealer_cards)) + 1
-  prompt RESULT[result]
+  result = (calc_total(player_cards) <=> calc_total(dealer_cards))
+  prompt RESULT[result + 1]
 end
 
 

@@ -1,3 +1,30 @@
+# inputs:
+# - Integer
+# outputs:
+# - Integer
+# reqs:
+# - compute the nth fib num w/o using recursion
+# rules:
+# - none
+# struct:
+# - Array (to hold fib nums)
+# algo:
+# - rtn 1 if n < 3
+# - otherwise, for 2 thru n-1,
+#   - add the last 2 fib nums to obtain the new fib num
+#   - store the new fib num in the arr
+# - rtn the last fib num
+
+# def fibonacci(n)
+#   fibs = [1, 1]
+#   return 1 if n < 3
+#   (2...n).each do |num|
+#     fib = fibs[num-1] + fibs[num-2]
+#     fibs << fib # just for fun
+#   end
+#   fibs.last
+# end
+
 # def fibonacci(nth)
 #   return 1 if nth < 3
 #   fib = 0

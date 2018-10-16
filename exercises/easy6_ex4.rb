@@ -1,35 +1,26 @@
-# input: array
-# output: array
+# inputs:
+# - Array
+# outputs:
+# - Array
 # reqs:
-# - reverse arr elements in place
-# - return the same (mutated) array
+# - take an arr as an arg
+# - reverse its elements in place (mutate)
+# - return the same arr
 # rules:
 # - none
-# datastruct: array
+# struct:
+# - Array
 # algo:
-# - determine array midpoint_ndx
-#   (0 1 2 3 4 5 6).size == 7, midpoint_ndx = size / 2 == 3
-#   (0 1 2 3 4 5 6 7).size == 8, midpoint_ndx = size / 2 == 4
-#   midpoint_ndx = arr.size / 2
-#   last_ndx = -1
-# - set ndx == 0
-# - while ndx < midpoint_ndx
-#     swap 1st and last element
-#     swap 2nd and 2nd_last element
-#     etc ...
-# - return the array
-
-LAST_NDX = -1
+# - for each element at ndx n in the arr, upto (but excluding) the arr midpoint,
+#   swap the array element at ndx n w/ the element at ndx (-1 - n)
+#   - arr midpoint == arr.size / 2
+#     [0,1,2,3,4] -> midpoint == 2
+#     [0,1,2,3] -> midpoint == 2
+#   - arr[n], arr[-1 - n] = arr[-1 - n], arr[n]
 
 def reverse!(arr)
-  midpoint_ndx = arr.size / 2
-  #p midpoint_ndx
-  ndx = 0
-  while ndx < midpoint_ndx
-    arr[ndx], arr[LAST_NDX - ndx] = arr[LAST_NDX - ndx], arr[ndx]
-    ndx += 1
-  end
-  #p arr
+  midpoint = arr.size / 2
+  (0...midpoint).each { |n| arr[n], arr[-1 - n] = arr[-1 - n], arr[n] }
   arr
 end
 

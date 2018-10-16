@@ -5,7 +5,7 @@
 # rather than passing the cards themselves; however, this ultimately results
 # in additional calls to the 'busted?' method, so little is gained.
 # Also introduced a subtle bug where the Player total was not evaluated if
-# the Player stayed with only 2 cards ... pain in the ass.
+# the Player stayed with only 2 cards ... pain in the ass
 
 # bonus 2
 # The "play again" code only occurs once in this implementation.
@@ -15,8 +15,7 @@
 # 'break' control statement is req'd there.
 
 # bonus 3
-# A "grand output" has already been provided with the 'hand' method.  That's
-# a pretty poor method name, so I'll change it to 'hand_summary'.
+# A "grand output" has already been provided with the 'display_hand' method.
 
 # bonus 4
 # copied (and modified) relevant code from TicTacToe program
@@ -39,12 +38,14 @@ SUIT = {
 
 # bonus 4
 # RESULT = ["Dealer wins", "It's a tie", "Player wins"]
-RESULT = ["Dealer", "No one", "Player"]
+DEALER = 'Dealer' # 'HAL9000' works too!
+PLAYER = 'Player'
+RESULT = [DEALER, "No one", PLAYER]
 REQUIRED_WINS = 5
 
 # bonus 5
-DEALER_BREAK_POINT = 27
-MAX_BREAK_POINT = 31
+DEALER_BREAK_POINT = 17 # usually 17
+MAX_BREAK_POINT    = 21 # usually 21
 
 
 def prompt(msg)
@@ -53,8 +54,7 @@ end
 
 
 # bonus 3
-# def hand(user, cards, total)
-def hand_summary(user, cards, total)
+def display_hand(user, cards, total)
   puts "#{user} cards are #{cards}; total is #{total}"
 end
 
@@ -74,9 +74,9 @@ def init_deck
   player_cards = deck.pop(2)
   dealer_cards = deck.pop(2)
 
-  hand_summary("Player", player_cards, calc_total(player_cards))
-  # hand_summary("Dealer", dealer_cards, calc_total(dealer_cards))
-  puts "Dealer has a #{dealer_cards[1]}"
+  display_hand(PLAYER, player_cards, calc_total(player_cards))
+  # display_hand(DEALER, dealer_cards, calc_total(dealer_cards))
+  puts "#{DEALER} has a #{dealer_cards[1]}"
 
   return deck, player_cards, dealer_cards
 end
@@ -130,12 +130,9 @@ def player_turn(deck, player_cards)
     break if answer == 'stay'
     player_cards << deck.pop
     total = calc_total(player_cards)
-    hand_summary("Player", player_cards, total)
-    if busted?(total)
-      prompt "Busted !"
-      # return []
-      break
-    end
+    display_hand(PLAYER, player_cards, total)
+    # return [] if busted?(total)
+    break if busted?(total)
   end
   # player_cards
   total
@@ -148,15 +145,14 @@ def dealer_turn(deck, dealer_cards)
   total = 0 # req'd for bonus 1
   loop do
     total = calc_total(dealer_cards)
-    hand_summary("Dealer", dealer_cards, total)
-    if busted?(total)
-      prompt "Busted !"
-      # return []
-      break
-    end
+    display_hand(DEALER, dealer_cards, total)
+    # return [] if busted?(total)
+    break if busted?(total)
+
     # bonus 5
     # break if total > 16
     break if total >= DEALER_BREAK_POINT
+
     dealer_cards << deck.pop
   end
   # dealer_cards
@@ -165,19 +161,19 @@ end
 
 # bonus 1
 # def compare_cards(player_cards, dealer_cards)
-#   result = (calc_total(player_cards) <=> calc_total(dealer_cards)) + 1
-#   prompt RESULT[result]
+#   result = (calc_total(player_cards) <=> calc_total(dealer_cards))
+#   prompt RESULT[result + 1]
 # end
 def compare_cards(player_total, dealer_total)
-  result = (player_total <=> dealer_total) + 1
+  result = (player_total <=> dealer_total)
   # bonus 4
-  # prompt RESULT[result]
-  RESULT[result]
+  # prompt RESULT[result + 1]
+  RESULT[result + 1]
 end
 
 # start of main program
 prompt "Welcome to #{MAX_BREAK_POINT} !" # bonus 5
-wins = { 'Player' => 0, 'Dealer' => 0 } # bonus 4
+wins = { PLAYER => 0, DEALER => 0 } # bonus 4
 loop do
   deck, player_cards, dealer_cards = init_deck
   # bonus 1
@@ -201,8 +197,8 @@ loop do
       winner = RESULT[2]
     else
       # bonus 1
-      # arguments for the 'compare_cards' method are now the total value of the hands,
-      # rather than the hands themselves
+      # arguments for the 'compare_cards' method are now the total value of the
+      # hands, rather than the hands themselves
       # bonus 4
       # 'compare_cards' now  returns a string representing the winner
       # compare_cards(player_total, dealer_total)
@@ -211,15 +207,15 @@ loop do
   end
 
   # bonus 4
-  if winner != RESULT[1]
+  if winner == RESULT[1]
+    prompt "It's a tie !"
+  else
     wins[winner] += 1
     prompt "#{winner} won !"
     if wins.values.max == REQUIRED_WINS
       prompt "#{winner} is the champion !"
       break
     end
-  else
-    prompt "It's a tie !"
   end
   prompt  "#{wins.keys[0]} has #{wins.values[0]} win(s); " \
           "#{wins.keys[1]} has #{wins.values[1]}."

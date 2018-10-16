@@ -1,3 +1,25 @@
+# inputs:
+# - String (the op to perform)
+# outputs:
+# - Integer (the result of the op)
+# reqs:
+# - implement a stack using push and pop methods
+#   - use a 'register' to rep the current value
+#   - for a given op, pop most recently pushed value from the stack, perform the op on that and the register value, and store the result in the register
+# - all ops are integer based
+# - take a str as an arg (specing the operands and the ops to perform)
+# - init the reg to 0
+# rules:
+# - none
+# struct:
+# - arr (to hold list of cmds)
+# algo:
+# - init a reg (int) to 0
+# - init a stack (array) of ints to []
+# - split the cmd str into an arr of cmds
+# - for each cmd
+#   - perform the specd op
+
 # n Place a value n in the "register". Do not modify the stack.
 # PUSH Push the register value on to the stack. Leave the value in the register.
 # ADD Pops a value from the stack and adds it to the register value, storing the result in the register.

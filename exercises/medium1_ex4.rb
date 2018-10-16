@@ -11,7 +11,7 @@
 # - init an array with n 'false' values
 # - for i = 1 to n times
 #     k = 0
-#     while k <= n
+#     while k < n
 #       k += i
 #       toggle switch k (T <-> F)
 #       save the switch state in the array
@@ -20,9 +20,7 @@
 #       copy the array index to an output array
 
 def array_init(size, value)
-  arr = []
-  (0...size).each { |_| arr << value }
-  arr
+  arr = Array.new(size) { value }
 end
 
 # def truthy_array_indexer(arr)
@@ -54,9 +52,7 @@ def lights(n)
   arr = array_init(n, false)
   1.upto(n) do |step_size|
     start_ndx = step_size - 1
-    start_ndx.step(by: step_size, to: n - 1) do |ndx|
-      arr[ndx] = !arr[ndx]
-    end
+    start_ndx.step(by: step_size, to: n - 1) { |ndx| arr[ndx] = !arr[ndx] }
   end
   arr.each_with_index { |v, i| new_arr << i + 1 if v == true }
   new_arr

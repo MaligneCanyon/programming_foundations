@@ -1,5 +1,22 @@
+# inputs:
+# - Array (unsorted array)
+# outputs:
+# - Integer (presumed always the case)
+# reqs:
+# - find and return dup value
+# rules:
+# - single dup value
+# struct:
+# - Array
+# algo:
+# - sort the array
+# - for each item in the array
+#   - if the current item == the next item
+#     - return the current item
+
 def find_dup(arr)
-  arr.sort!.each_with_index { |v, i| return v if v == arr[i - 1] }
+  arr.sort!.each_with_index { |valu, ndx| return valu if valu == arr[ndx + 1] }
+  nil # return nil if no duplicate found
 end
 
 p find_dup([1, 5, 3, 1]) == 1
@@ -13,3 +30,4 @@ p find_dup([18,  9, 36, 96, 31, 19, 54, 75, 42, 15,
           85, 87, 51, 17, 66, 20, 28, 26,  2, 22,
           40, 23, 71, 62, 73, 32, 43, 24,  4, 56,
           7,  34, 57, 74, 45, 11, 88, 67,  5, 58]) == 73
+p find_dup([1, 5, 3, 4]) == nil

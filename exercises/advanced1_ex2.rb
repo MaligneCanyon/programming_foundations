@@ -76,3 +76,53 @@ star(9)
 #   * * *
 #  *  *  *
 # *   *   *
+
+
+# ALT VERSION
+# inputs:
+# - Integer
+# ouputs:
+# - printed pattern
+#   - rows of alternating star and space syms
+# reqs:
+# - display an 8-pt star pattern in an n-by-n grid
+# - n is an odd int arg, n >= 7
+# rules:
+# - n rows of n chars
+#   - if n == 7, for each row 0 to 6, the row is comprised of
+#     spaces(1)  0, 1, 2, x, 2, 1, 0
+#     a star
+#     spaces(2)  2, 1, 0, x, 0, 1, 2
+#     a star
+#     spaces(2)
+#     a star
+#     spaces(1)
+#   - no need to printout the last set of spaces
+#   - center row is a row of n stars
+#   - above the center row,
+#     spaces1 = row
+#     spaces2 = (n-3)/2 - row
+#   - below the center row,
+#     spaces1 = n-1-row
+#     spaces2 = (n-3)/2 - (n-1-row)
+# struct:
+# - String
+# algo:
+# - determine the middle row
+# - for each row
+#   - build the str
+#   - printout the str
+
+# def stars(n)
+#   midrow = n / 2
+#   (0...n).each do |row|
+#     if row == midrow
+#       puts '*' * n
+#     else
+#       spaces1 = row < midrow ? row : n - 1 - row
+#       spaces2 = (n-3)/2 - spaces1
+#       substr = ' ' * spaces1 + '*' + ' ' * spaces2
+#       puts substr + '*' + substr.reverse
+#     end
+#   end
+# end

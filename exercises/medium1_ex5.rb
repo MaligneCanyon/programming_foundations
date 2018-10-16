@@ -9,6 +9,7 @@
 # - n == max width == number of rows
 # - i == current row number
 # - if n == 9
+#   i      0 1 2 3 4 5 6 7 8
 #   spaces 4 3 2 1 0 1 2 3 4
 #   stars  1 3 5 7 9 7 5 3 1
 # - if k = (n - 1) / 2
@@ -29,15 +30,15 @@
 # - for each output string
 #     build the string from space and star chars
 #     output the string
+
 HOLLOW = true
 
 def print_str(spaces, stars)
-  str = if HOLLOW && stars > 2
-          ' ' * spaces << '*' << ' ' * (stars - 2) << '*'
-        else
-          ' ' * spaces << '*' * stars
-        end
-  puts str
+  if HOLLOW && stars > 2
+    puts ' '*spaces + '*' + ' '*(stars - 2) + '*'
+  else
+    puts ' '*spaces + '*'*stars
+  end
 end
 
 def diamond(n)

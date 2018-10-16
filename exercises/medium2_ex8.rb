@@ -1,39 +1,42 @@
 # inputs:
-# - integer
+# - integer (seed num)
 # outputs:
-# - integer
+# - num (next featured num)
 # reqs:
-# - return the next featured num that is greater than the input num or return nil and output an error msg
+# - take an int arg
+# - rtn the next odd num that is a multiple of 7 and has unique digits
 # rules:
-# - odd number
+# - odd num
 # - multiple of 7
 # - digits occur at most 1x
 # - if candidate number has > 10 digits, at least one digit is a repeat
-# datastruct:
-# - array (to hold digits of potential candidates)
+# struct:
+# - array (to hold digits)
 # algo:
-# - calc an initial candidate from the input
-# - while candidate has < 11 digits
-#   - determine the next multiple of 7 (a candidate)
-#   - convert the candidate to a string
-#   - split the string into an array of chars
-#   - check whether any char occurs > 1x
-#   - either
-#     - return the candidate
-#     - print an err msg and return nil
-#     - calc the next candidate
+# - calc an initial multiple of 7
+#   - divide the num by 7 (discarding the remainder)
+#   - multiply the result by 7
+# - until feature found or more than 10 digits present
+#   - find the next odd multiple of 7
+#     - if the multiple is odd, add 14 to it
+#     - else add 7 to the multiple
+#   - return err msg if multiple > 9999999999
+#   - convert the multiple to a string
+#   - chk for unique digits
+#     - split the string into an array of chars
+#     - if the array size equals the unique array size then unique digits
+#   - if unique return the multiple
 
 INCR = 7
 INCR_X2 = 14
 
-def featured(num)
-  candidate = (num / INCR + 1) * INCR
-  candidate += INCR if candidate.even?
+def featured(seed)
+  num = seed / INCR * INCR
   loop do
-    arr = candidate.to_s.split('')
-    return candidate if arr.uniq.size == arr.size
-    return 'No possible next featured number' if arr.size > 10
-    candidate += INCR_X2
+    num += num.odd? ? INCR_X2 : INCR
+    return 'no feature' if num > 9999999999 # 11 digits
+    arr = num.to_s.chars
+    return num if arr.size == arr.uniq.size
   end
 end
 
@@ -44,5 +47,4 @@ p featured(997) == 1029
 p featured(1029) == 1043
 p featured(999_999) == 1_023_547
 p featured(999_999_987) == 1_023_456_987
-
 p featured(9_999_999_999) # -> There is no possible number that fulfills those requirements

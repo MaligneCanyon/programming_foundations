@@ -1,12 +1,14 @@
 require 'pry'
 
+PLAYER_NAME     = 'Player' # bonus x1: replace string 'Player' w/ constant
+COMPUTER_NAME   = 'HAL9000' # bonus x1: replace string 'Computer' w/ constant
+FIRST_MOVER     = 'choose' # PLAYER_NAME, COMPUTER_NAME, or "choose" # bonus 5c
 INITIAL_MARKER  = ' '
 PLAYER_MARKER   = 'X'
 COMPUTER_MARKER = 'O'
-WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
-                [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # cols
-                [[1, 5, 9], [3, 5, 7]]              # diags
-FIRST_MOVER = 'choose' # "player", "computer", or "choose" # bonus 5c
+WINNING_LINES   = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
+                  [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # cols
+                  [[1, 5, 9], [3, 5, 7]]              # diags
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -15,7 +17,7 @@ end
 # rubocop:disable Metrics/AbcSize
 def display_board(brd)
   system 'clear'
-  puts "You are a(n) #{PLAYER_MARKER}, computer is a(n) #{COMPUTER_MARKER}"
+  puts "You are #{PLAYER_MARKER}, #{COMPUTER_NAME} is #{COMPUTER_MARKER}"
   puts ""
   puts "     |     |"
   puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}"
@@ -54,7 +56,7 @@ def player_places_piece!(brd)
   brd[square] = PLAYER_MARKER
 end
 
-# bonus 3
+# bonus 3, bonus 4
 def detect_action(brd, marker)
   WINNING_LINES.each do |line|
     if brd.values_at(*line).count(marker) == 2
@@ -67,12 +69,13 @@ def detect_action(brd, marker)
 end
 
 # base case
+# def computer_places_piece!(brd)
 #   square = empty_squares(brd).sample
 #   brd[square] = COMPUTER_MARKER
 # end
 
 # bonus 3
-# def computer_places_piece!(brd)
+# def computer_places_piece!(brd) # with defensive capability
 #   square = detect_action(brd)
 #   square = empty_squares(brd).sample unless square > 0
 #   brd[square] = COMPUTER_MARKER
@@ -80,7 +83,7 @@ end
 
 # bonus 4
 def computer_places_piece!(brd) # with offensive capability
-  square = detect_action(brd, COMPUTER_MARKER)
+  square = detect_action(brd, COMPUTER_MARKER) # bonus 5a
   square = detect_action(brd, PLAYER_MARKER) unless square > 0
   square = 5 if empty_squares(brd).include?(5) # bonus 5b
   square = empty_squares(brd).sample unless square > 0
@@ -99,33 +102,27 @@ end
 def detect_winner(brd)
   WINNING_LINES.each do |line|
     if brd.values_at(*line).count(PLAYER_MARKER) == 3
-      return 'Player'
+      return PLAYER_NAME
     elsif brd.values_at(*line).count(COMPUTER_MARKER) == 3
-      return 'Computer'
+      return COMPUTER_NAME
     end
   end
   nil
 end
 
 # bonus 1
-def joinor(arr, sep = ' ', conj = 'or') # optional params
-  str = ''
-  size = arr.size
-  if sep == ' ' && size > 2
-    sep = ', '
-  end
-  conj << ' '
-  arr.each_with_index do |elem, ndx|
-    str << elem.to_s
-    str << sep unless ndx == size - 1
-    str << conj if ndx == size - 2
-  end
-  str
+def joinor(arr, delimiter = ', ', conjunction = 'or')
+  return "" if arr.empty?
+  arr.map!(&:to_s)
+  return arr[0] if arr.size == 1
+  str = arr[0..-2].join(delimiter)
+  str << (arr.size > 2 ? delimiter : ' ')
+  str << conjunction + ' ' + arr[-1]
 end
 
 # bonus 6
 def place_piece!(brd, player)
-  if player == 'computer'
+  if player == COMPUTER_NAME
     computer_places_piece!(brd)
   else
     player_places_piece!(brd)
@@ -134,20 +131,20 @@ end
 
 # bonus 6
 def alternate_player(player)
-  player = (player == 'computer' ? 'player' : 'computer')
+  player == COMPUTER_NAME ? PLAYER_NAME : COMPUTER_NAME
 end
 
 # start of main program
-wins = { 'Player' => 0, 'Computer' => 0 } # bonus 2
+wins = { PLAYER_NAME => 0, COMPUTER_NAME => 0 } # bonus 2
 loop do
+  # bonus 5c
   if FIRST_MOVER == 'choose'
-    prompt "Who goes first ? You or the computer ? (y or c)"
+    prompt "Who goes first ? You or the #{COMPUTER_NAME} ? (y or c)"
     answer = gets.chomp
-    current_player = answer.downcase.start_with?('c') ? 'computer' : 'player'
+    current_player = answer.downcase.start_with?('c') ? COMPUTER_NAME : PLAYER_NAME
   else
     current_player = FIRST_MOVER
   end
-  # p current_player
 
   board = initialize_board
   loop do
@@ -159,7 +156,7 @@ loop do
     # computer_places_piece!(board)
 
     # bonus 5c
-    # if current_player == 'player' || current_player== ''
+    # if current_player == PLAYER_NAME || current_player == ''
     #   player_places_piece!(board)
     #   break if someone_won?(board) || board_full?(board)
     # end

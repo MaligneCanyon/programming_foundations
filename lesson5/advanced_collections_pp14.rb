@@ -6,14 +6,12 @@ hsh = {
   'marrow' => {type: 'vegetable', colors: ['green'], size: 'large'},
 }
 
-arr = []
-hsh.each_value do |sub_hsh|
-  arr << if sub_hsh[:type] == 'fruit'
-    sub_hsh[:colors].map do |color|
-      color.capitalize
-    end
+arr = hsh.values
+arr.map! do |k, v|
+  if k[:type] == 'fruit'
+    k[:colors].map! { |color| color.capitalize }
   else
-    sub_hsh[:size].upcase
+    k[:size].upcase
   end
 end
-p arr
+p arr == [["Red", "Green"], "MEDIUM", ["Red", "Green"], ["Orange"], "LARGE"]
