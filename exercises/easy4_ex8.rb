@@ -1,4 +1,30 @@
-H = {
+# inputs:
+# - string
+# outputs:
+# - integer
+# reqs:
+# - convert the input str to an int
+# rules:
+# - the input str may have a leading + or - sign
+# - otherwise, assume all input chars are numeric
+# struct:
+# - array (to hold str chars)
+# - numeric (to hold a running total of the numeric value of the chars)
+# algo:
+# - init a total to 0
+# - reverse the str and convert it to an arr of chars
+# - for each char
+#   - use a hash to lookup the number for each numeric char
+#   - compute the numeric value for each number based on the arr ndx
+#   - add the numeric value to the total
+# - if the 1st char of the str is a - sign
+#   - rtn the total * -1
+# - otherwise
+#   - rtn the total
+
+HSH = {
+  '+' => 0,
+  '-' => 0,
   '0' => 0,
   '1' => 1,
   '2' => 2,
@@ -12,16 +38,10 @@ H = {
 }
 
 def string_to_signed_integer(str)
-  arr = str.chars.reverse
   total = 0
-  arr.each_with_index do |c, i|
-    if c == '-'
-      total *= -1
-    elsif c != '+'
-      total += H[c] * 10**i
-    end
-  end
-  total
+  arr = str.reverse.chars
+  arr.each_with_index { |char, ndx| total += HSH[char] * 10**ndx }
+  str[0] == '-' ? -total : total
 end
 
 p string_to_signed_integer('4321') == 4321

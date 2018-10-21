@@ -1,3 +1,20 @@
+# inputs:
+# - string (2 strings)
+# output:
+# - string
+# reqs:
+# - take 2 strs as input
+# - determine the longer str
+# - concat and output the shorter, longer and shorter str
+# rules:
+# - none
+# struct:
+# - string
+# algo:
+# - determine the longer (and shorter) str
+# - concat the strs in the specd order
+# - rtn the concatd str
+
 def short_long_short(str1, str2)
   if str1.size < str2.size
     sht_str = str1

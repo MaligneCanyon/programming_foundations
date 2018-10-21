@@ -1,4 +1,24 @@
-H = {
+# inputs:
+# - string
+# outputs:
+# - integer
+# reqs:
+# - convert the input str to an int
+# rules:
+# - assume all input chars are numeric
+# struct:
+# - array (to hold str chars)
+# - numeric (to hold a running total of the numeric value of the chars)
+# algo:
+# - init a total to 0
+# - reverse the str and convert it to an arr of chars
+# - for each char
+#   - use a hash to lookup the number for each numeric char
+#   - compute the numeric value for each number based on the arr ndx
+#   - add the numeric value to the total
+# - rtn the total
+
+HSH = {
   '0' => 0,
   '1' => 1,
   '2' => 2,
@@ -12,11 +32,12 @@ H = {
 }
 
 def string_to_integer(str)
-  arr = str.chars.reverse
   total = 0
-  arr.each_with_index { |c, i| total += H[c] * 10**i }
+  arr = str.reverse.chars
+  arr.each_with_index { |char, ndx| total += HSH[char] * 10**ndx }
   total
 end
 
+p string_to_integer('1000') == 1000
 p string_to_integer('4321') == 4321
 p string_to_integer('570') == 570

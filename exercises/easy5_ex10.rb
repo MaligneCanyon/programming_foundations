@@ -1,13 +1,20 @@
-# input: str
-# output: strs
+# inputs:
+# - string
+# outputs:
+# - multiple strings
 # reqs:
-#   1st and last line: plus sign, followed by str.size+2 minus signs, followed by plus sign
-#   2nd and 2nd last line: pipe, followed by str.size+2 spaces, followed by pipe
-#   middle line: pipe, followed by space, followed by str, followed by space, followed by pipe
-# rules: print each output str
-
-# datestruc: arr of strs
-
+# - take a str
+# - print the str w/i a box
+# rules:
+# - box has 5 lines, composed as follows
+#   - 1st and last lines: plus sign, str.size+2 minus signs, plus sign
+#   - 2nd and 2nd last lines: pipe, str.size+2 spaces, pipe
+#   - middle line: pipe, space, input str, space, pipe
+# struct:
+# - array (to hold strs)
+# algo:
+# - build the first 3 lines and store them in the arr
+# - print the 5 lines
 
 def print_in_box(str)
   arr = [

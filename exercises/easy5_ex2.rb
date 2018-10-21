@@ -1,22 +1,33 @@
-# inputs: integer
-# outputs: string
-# reqs:
-# - convert input mins (b4 or after midnight) to string in 24 hour format (hh:mm)
-# rules:
-# - if the number of minutes is positive, the time is after midnight
-# - if the number of minutes is negative, the time is before midnight.
-# datastruct:
+# inputs:
 # - integer
+# outputs:
+# - string
+# reqs:
+# - take an integer as input
+# - the input reps a time in minutes b4 or after midnite
+# - rtn a str reping the time in hh:mm format
+# rules:
+# - if the input is positive, after midnite
+# - if the input is negative, b4 midnite
+# struct:
+# - numeric
 # algo:
-# - from the input mins, calc offset from midnight
-# - calc the hour and min
-# - format (and output) the output str
+# - divide the input by the num of mins in a day
+#   - the modulus is the total minutes b4 or after midnite
+#     - accts for multi-day offset
+# - divide the result by the num of mins in an hour
+#   - the quotient is the hours after midnite
+#   - the modulus is the minutes after midnite
+# - format the quotient and 2nd modulus in a str
+# - rtn the result
+
+MINS_PER_DAY = 1440
+MINS_PER_HOUR = 60
 
 def time_of_day(mins_from_midnite)
-  mins_from_midnite %= 1440 # account for multiday offsets
-  hour, min = mins_from_midnite.divmod(60)
-  # p format("%02d:%02d", hour, min)
-  format("%02d:%02d", hour, min)
+  mins_from_midnite %= MINS_PER_DAY
+  hours_from_midnite, mins_from_midnite = mins_from_midnite.divmod(MINS_PER_HOUR)
+  format("%02d:%02d", hours_from_midnite, mins_from_midnite)
 end
 
 p time_of_day(0) == "00:00"

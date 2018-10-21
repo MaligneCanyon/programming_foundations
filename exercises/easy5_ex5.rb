@@ -1,20 +1,32 @@
-# input: str
-# output: str
-# reqs
-# - str with a non-alpha chars replaced by a space
-# - assume lower-case strs only
-# rules
-# - multi-non-alpha segments replaced by a single space
+# inputs:
+# - string
+# outputs:
+# - string
+# reqs:
+# - take a str as input
+# - rtn a str w/ all non-alpha chars replaced by spaces
+# - replace runs of spaces w/ a single space
+# rules:
+# - none
+# struct:
+# - string
+# algo:
+# - use gsub and a regex to replace non-alpha chars w/ spaces
+# - use squeeze to replace runs of spaces w/ a single space
+# - rtn the str
 
-def alpha_str
-  (('a'..'z').to_a + ('A'..'Z').to_a).join
-end
+# def alpha_str
+#   (('a'..'z').to_a + ('A'..'Z').to_a).join
+# end
+
+# def cleanup(str)
+#   new_str = ''
+#   str.each_char { |char| new_str << (alpha_str.include?(char) ? char : ' ') }
+#   new_str.squeeze
+# end
 
 def cleanup(str)
-  alpha = alpha_str
-  new_str = ''
-  str.each_char { |char| new_str << (alpha.include?(char) ? char : ' ') }
-  new_str.squeeze
+  str.gsub(/[^a-z]/i, ' ').squeeze
 end
 
 p cleanup("---what's my +*& line?") == ' what s my line '

@@ -1,26 +1,40 @@
-# input: str
-# output: hash
+# inputs:
+# - string
+# outputs:
+# - hash
 # reqs:
-#   - str w/ >=1 word
-#   - count the number of words of each length
-#   - don't count non-alpha chars
-#   - store the result in a hash w/ format: length => #words
+# - take a space-sepd str as input
+# - rtn a hash listing the number of words of different sizes
+#   - store the result w/ format: length => #words
 # rules:
-#   - words are any substr not including a space
+# - str w/ >=1 word
+# - words are any substr not including a space
+# - exclude non-letters
+# struct:
+# - array (to hold words)
+# algo:
+# - init a hash to {}
+# - split the str into words
+# - for each word
+#   - calc the word size (exclude non-letters)
+#   - create a key for that word size
+#   - if the key does not exist, add the key to the hash (with value 1)
+#   - if the key does exist, increment the value for that key
+# - rtn the hash
 
-
-def word_sizes (str)
-  arr = str.split(' ')
-  h = {}
+def word_sizes(str)
+  hsh = {}
+  arr = str.split
   arr.each do |word|
-    proper_word = word.gsub(/[^a-z]/i, '') # del non-alpha chars
-    if h.has_key?(proper_word.size)
-      h[proper_word.size] += 1
+    # my_key = word.gsub(/[^a-z]/i, '').size # del non-alpha chars
+    my_key = word.scan(/[a-z]/i).size
+    if hsh.key?(my_key)
+      hsh[my_key] += 1
     else
-      h[proper_word.size] = 1
+      hsh[my_key] = 1
     end
   end
-  h
+  hsh
 end
 
 p word_sizes('Four score and seven.') == { 3 => 1, 4 => 1, 5 => 2 }

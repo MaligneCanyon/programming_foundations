@@ -1,5 +1,25 @@
+# inputs:
+# - integer (year)
+# outputs:
+# - boolean
+# reqs:
+# - take an int as input (the year)
+# - rtn T or F based on whether or not the input is a leap year
+# rules:
+# - if year % 100 == 0, then
+#   leap if year % 400 == 0
+# - otherwise
+#   leap if year % 4 == 0
+# - leap = (year % 100 == 0) ? (year % 400 == 0) : (year % 4 == 0)
+# struct:
+# - numeric
+# algo:
+# - apply the rules to determine if the input is a leap year
+# - rtn the result
+
 def leap_year?(year)
-  (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0))
+  (year % 100 == 0) ? (year % 400 == 0) : (year % 4 == 0)
+  # (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0)) # this works too
 end
 
 p leap_year?(2016) == true

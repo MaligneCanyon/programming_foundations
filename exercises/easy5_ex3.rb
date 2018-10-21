@@ -1,9 +1,25 @@
-# input: str
-# output: int in range 0..1439
-# reqs
-# - str in 24hr format hh:mm
-# rules
-# - none
+# inputs:
+# - string
+# outputs:
+# - integer in range 0..1439
+# reqs:
+# - take a str reping the time of day in 24hr format
+# - rtn the num of mins b4 and after midnite
+# rules:
+# - str format hh:mm
+# struct:
+# - numeric
+# algo:
+# - split the str into hour and min portions
+# - convert the hour and min portions to integers
+# - convert the hour portion to mins and add it to the min portion
+# - div the result by the num of mins in a day
+#   - the modulus is the num of mins after midnite
+#   - rtn the result
+# - subt the mins after midnite from the mins in a day
+# - div the result by the num of mins in a day
+#   - the modulus is the num of mins b4 midnite
+#   - rtn the result
 
 MINS_PER_HOUR = 60
 MINS_PER_DAY  = 1440
