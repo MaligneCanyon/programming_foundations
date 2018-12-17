@@ -19,7 +19,8 @@
 
 def buy_fruit(arr)
   # arr.map { |subarr| ("#{subarr[0]} " * subarr[1]).split }.flatten
-  arr.map { |fruit, num| ("#{fruit} " * num).split }.flatten
+  # arr.map { |fruit, num| ((fruit + ' ') * num).split }.flatten
+  arr.map { |fruit, num| [fruit] * num }.flatten
 end
 
 # def buy_fruit(arr)

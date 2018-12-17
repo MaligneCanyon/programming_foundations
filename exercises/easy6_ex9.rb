@@ -14,9 +14,17 @@
 #   - return T if current element == the search value
 # - return F (search value not found)
 
-def include?(arr, num)
-  arr.each { |valu| return true if valu == num }
-  false # search value not found
+# def include?(arr, num)
+#   arr.each { |valu| return true if valu == num }
+#   false # search value not found
+# end
+
+# alt method:
+# algo:
+# - rtn T or F based on whether any of the arr elements are equal to the search
+#   value
+def include?(arr,search)
+  arr.any? { |v| v == search }
 end
 
 p include?([1,2,3,4,5], 3) == true

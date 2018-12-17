@@ -20,11 +20,11 @@
 #   - find the next odd multiple of 7
 #     - if the multiple is odd, add 14 to it
 #     - else add 7 to the multiple
-#   - return err msg if multiple > 9999999999
+#   - return err msg if multiple > 9_999_999_999
 #   - convert the multiple to a string
 #   - chk for unique digits
 #     - split the string into an array of chars
-#     - if the array size equals the unique array size then unique digits
+#     - if the array equals the unique array then unique digits
 #   - if unique return the multiple
 
 INCR = 7
@@ -34,9 +34,9 @@ def featured(seed)
   num = seed / INCR * INCR
   loop do
     num += num.odd? ? INCR_X2 : INCR
-    return 'no feature' if num > 9999999999 # 11 digits
+    return 'no feature' if num > 9_999_999_999 # 11 digits
     arr = num.to_s.chars
-    return num if arr.size == arr.uniq.size
+    return num if arr == arr.uniq
   end
 end
 

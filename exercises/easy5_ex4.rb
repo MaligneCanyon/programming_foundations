@@ -20,10 +20,16 @@
 # - rtn the new str
 
 def swap(str)
-  arr = str.split
-  arr.map { |word| word[0], word[-1] = word[-1], word[0] }
-  arr.join(' ')
+  str.split.each { |word| word[0], word[-1] = word[-1], word[0] }.join(' ')
 end
+
+# def swap(str)
+#   arr = str.split.map do |word|
+#     word[0], word[-1] = word[-1], word[0]
+#     word
+#   end
+#   arr.join(' ')
+# end
 
 p swap('abc def')
 p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'

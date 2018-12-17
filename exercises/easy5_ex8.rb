@@ -18,9 +18,9 @@
 #   - map the original array ndx in place of the english word
 # - rtn the array
 
-NUMBERS = %w[zero one two three four five six seven eight nine
+NUMBERS = %w(zero one two three four five six seven eight nine
   ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen
-]
+)
 
 # def alphabetic_number_sort (arr)
 #   english = NUMBERS[arr[0]...arr.size] # handles any subset 0...arr.size

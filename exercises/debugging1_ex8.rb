@@ -1,8 +1,9 @@
-# -'password' is only scoped locally w/i the set_password and verify_password methods
-# its value is undefined when the line
-#   if input == password
-# is encountered
-# - pass 'password' as a parameter to verify_password and use the return value from set_password
+# -'password' is only scoped locally w/i the set_password and verify_password
+#   methods; its value is undefined when the line
+#     if input == password
+#   is encountered
+# - assign the return value from set_password to the 'password' variable, and
+#   pass 'password' as a parameter to verify_password
 
 password = nil
 

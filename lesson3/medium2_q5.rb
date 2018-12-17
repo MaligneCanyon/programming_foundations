@@ -7,7 +7,7 @@
 # end
 
 
-# VALID_COLORS = %w(blue green)
+# VALID_COLORS = %w(blue green).freeze
 # def color_valid(color)
 #  VALID_COLORS.include?(color)
 # end

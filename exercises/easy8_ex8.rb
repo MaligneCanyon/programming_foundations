@@ -12,10 +12,10 @@
 # - split the input str into chars
 # - for each char in the array
 #   - map the char into the array
-#   - 2 times if the char is a consonant
-#   - 1 time otherwisse
-# - join the array chars into a new str
-# - output the new str
+#     - 2 times if the char is a consonant
+#     - 1 time otherwise
+# - join the array chars to form a new str
+# - rtn the new str
 
 # def double_consonants(str)
 #   str.chars.map { |c| c =~ /[bcdfghjklmnpqrstvwxyz]/i ? c * 2 : c }.join

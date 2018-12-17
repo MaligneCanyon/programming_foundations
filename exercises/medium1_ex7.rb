@@ -20,45 +20,6 @@
 # - join the arr elements to form the output str
 # - rtn the output str
 
-# NUMS = {
-#   'zero'  => '0',
-#   'one'   => '1',
-#   'two'   => '2',
-#   'three' => '3',
-#   'four'  => '4',
-#   'five'  => '5',
-#   'six'   => '6',
-#   'seven' => '7',
-#   'eight' => '8',
-#   'nine'  => '9',
-#   'zero.'  => '0.',
-#   'one.'   => '1.',
-#   'two.'   => '2.',
-#   'three.' => '3.',
-#   'four.'  => '4.',
-#   'five.'  => '5.',
-#   'six.'   => '6.',
-#   'seven.' => '7.',
-#   'eight.' => '8.',
-#   'nine.'  => '9.'
-# }
-
-# def word_to_digit(str)
-#   arr = str.split
-#   p arr
-#   arr.map! { |word| NUMS.has_key?(word) ? NUMS[word] : word }
-#   p arr
-#   arr.join(' ')
-# end
-
-
-# less awkward method:
-# algo:
-# - init a lookup table with acceptible numerical words and associated digits
-# - for each key in the lookup table
-#   - if the str contains the key, substitute the numerical value for the key
-# - rtn the revised str
-
 NUMS = {
   'zero'  => '0',
   'one'   => '1',
@@ -69,13 +30,48 @@ NUMS = {
   'six'   => '6',
   'seven' => '7',
   'eight' => '8',
-  'nine'  => '9'
+  'nine'  => '9',
+  'zero.'  => '0.',
+  'one.'   => '1.',
+  'two.'   => '2.',
+  'three.' => '3.',
+  'four.'  => '4.',
+  'five.'  => '5.',
+  'six.'   => '6.',
+  'seven.' => '7.',
+  'eight.' => '8.',
+  'nine.'  => '9.'
 }
 
 def word_to_digit(str)
-  NUMS.keys.each { |key| str.gsub!(/\b#{key}\b/i, NUMS[key]) }
-  str
+  str.split.map { |word| NUMS.has_key?(word) ? NUMS[word] : word }.join(' ')
 end
+
+
+# less awkward method:
+# algo:
+# - init a lookup table with acceptible numerical words and associated digits
+# - for each key in the lookup table
+#   - if the str contains the key, substitute the numerical value for the key
+# - rtn the revised str
+
+# NUMS = {
+#   'zero'  => '0',
+#   'one'   => '1',
+#   'two'   => '2',
+#   'three' => '3',
+#   'four'  => '4',
+#   'five'  => '5',
+#   'six'   => '6',
+#   'seven' => '7',
+#   'eight' => '8',
+#   'nine'  => '9'
+# }
+
+# def word_to_digit(str)
+#   NUMS.keys.each { |key| str.gsub!(/\b#{key}\b/i, NUMS[key]) }
+#   str
+# end
 
 p word_to_digit('Please call me at five five five one two three four. Thanks.')
 p word_to_digit('Please call me at five five five one two three four. Thanks.') ==

@@ -28,8 +28,9 @@ def real_palindrome?(str)
 end
 
 # def real_palindrome?(str)
-#   alphanums = ('A'..'Z').to_a + ('0'..'9').to_a
-#   arr = str.upcase.chars.select { |char| alphanums.include?(char) }
+#   # alphanums = ('A'..'Z').to_a + ('0'..'9').to_a
+#   # arr = str.upcase.chars.select { |char| alphanums.include?(char) }
+#   arr = str.upcase.chars.select { |char| /[a-z0-9]/i =~ char }
 #   palindrome?(arr.join)
 # end
 

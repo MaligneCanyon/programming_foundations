@@ -30,9 +30,11 @@ def dms (angle)
   deg, sec = sec.divmod(SEC_PER_DEG)
   min, sec = sec.divmod(SEC_PER_MIN)
   format(%(%d%s%02d'%02d"), deg, DEGREE, min, sec)
+#  format("%d%s%02d'%02d\"", deg, DEGREE, min, sec) # this works too
 end
 
-puts dms(9.999999)
+puts dms(9.999)
+puts dms(9.9999)
 p dms(30) == %(30°00'00")
 p dms(76.73) == %(76°43'48")
 p dms(254.6) == %(254°36'00")

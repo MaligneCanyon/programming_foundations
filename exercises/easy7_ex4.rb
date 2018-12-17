@@ -15,22 +15,22 @@
 # - rtn the resulting str
 
 # def swapcase(str)
-#   arr = str.chars.map do |char|
-#     if char =~ /[a-z]/
-#       char.upcase
-#     elsif char =~ /[A-Z]/
-#       char.downcase
-#     else
-#       char
-#     end
-#   end
-#   arr.join
+#   new_str = ''
+#   str.each_char { |c| new_str << ((c == c.upcase) ? c.downcase : c.upcase) }
+#   new_str
 # end
 
+# alt method:
+# algo:
+# - split the str into an arr of chars
+# - for each char
+#   - swap the char case
+#   - map the char to the arr
+# - join the arr chars to form a new str
+# - rtn the new str
+
 def swapcase(str)
-  new_str = ''
-  str.each_char { |c| new_str << ((c == c.upcase) ? c.downcase : c.upcase) }
-  new_str
+  str.chars.map { |chr| chr == chr.upcase ? chr.downcase : chr.upcase }.join
 end
 
 p swapcase('CamelCase') == 'cAMELcASE'

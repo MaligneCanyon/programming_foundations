@@ -35,6 +35,32 @@ def find_fibonacci_index_by_length(input_num)
   fib_ndx
 end
 
+
+# alt version:
+# struct:
+# - numeric
+# algo:
+# - init an ndx to 6
+# - init the last, 2nd last fibs to 5, 8
+# - loop
+#   - calc the new fib
+#   - increment the ndx
+#   - rtn the ndx if the num of digits in the fib is greater than or equal to
+#     the input num
+#   - set the 2nd last fib to the last fib
+#   - set the last fib to the new fib
+
+# def find_fibonacci_index_by_length(num)
+#   ndx = 6
+#   fib_x, fib_y = 5, 8
+#   loop do
+#     fib_z = fib_x + fib_y
+#     ndx += 1
+#     return ndx if fib_z.to_s.size >= num
+#     fib_x, fib_y = fib_y, fib_z
+#   end
+# end
+
 p find_fibonacci_index_by_length(2) == 7
 p find_fibonacci_index_by_length(10) == 45
 p find_fibonacci_index_by_length(100) == 476

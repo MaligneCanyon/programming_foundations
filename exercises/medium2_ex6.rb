@@ -21,7 +21,7 @@
 # - output the triangle type
 
 def triangle(angle1, angle2, angle3)
-  arr = [angle1, angle2, angle3].sort!
+  arr = [angle1, angle2, angle3].sort
   return :invalid unless arr.sum == 180 && arr[0] > 0
   return :obtuse if arr[2] > 90
   return :right if arr[2] == 90

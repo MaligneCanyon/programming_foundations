@@ -59,6 +59,37 @@ def diamond(n)
   puts # adds a blank line
 end
 
+
+# SIMPLER VERSION
+# rules:
+# - n is an odd int
+# - n rows
+# - center row = (n + 1) / 2
+# - above (or at) the center row:
+#   - k = row
+# - below (or at) the center row:
+#   - k = n - row + 1
+# - (n - 1) / 2 - (k - 1) spaces
+# - (k - 1) * 2 + 1 = 2k - 1 asts
+# struct:
+# - str
+# algo:
+# - calc the center row
+# - for each row
+#   - calc the num of spaces and asts
+#   - build the str
+#   - puts the str
+  # def diamond(n)
+  #   center = (n + 1) / 2
+  #   (1..n).each do |row|
+  #     k = (row > center) ? n - row + 1 : row
+  #     spaces = (n - 1) / 2 - (k - 1)
+  #     asts = 2 * k - 1
+  #     puts ' '*spaces + '*'*asts
+  #   end
+  # end
+
+
 diamond(1)
 # *
 

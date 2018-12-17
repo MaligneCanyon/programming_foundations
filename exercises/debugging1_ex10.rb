@@ -1,5 +1,5 @@
 # - the problem in the original vers is the call to 'Math.log', where integer division
-# results in the incorrect value for the arg to that method
+#   results in the incorrect value for the arg to that method
 # - change the arg to fp
 
 # Term frequency - inverse document frequency:

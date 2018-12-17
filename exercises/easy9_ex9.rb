@@ -15,16 +15,26 @@
 # - use a case statement to determine the corresponding letter
 # - rtn the letter
 
-def get_grade(int1, int2, int3)
-  avg = (int1 + int2 + int3)/3.0
-  case avg
-    when (0...60) then 'f'
-    when (60...70) then 'd'
-    when (70...80) then 'c'
-    when  (80...90) then 'b'
-    else 'a'
+def get_grade(*arg) # one or more int or fp args
+  case arg.sum / arg.size.to_f
+  when (0...60)  then 'F'
+  when (60...70) then 'D'
+  when (70...80) then 'C'
+  when (80...90) then 'B'
+  else 'A' # when (90..100) then 'A'
   end
 end
+
+# def get_grade(int1, int2, int3)
+#   avg = (int1 + int2 + int3) / 3.0
+#   case avg
+#     when (0...60)  then 'F'
+#     when (60...70) then 'D'
+#     when (70...80) then 'C'
+#     when (80...90) then 'B'
+#     else 'A'
+#   end
+# end
 
 # HSH = {
 #   90 => 'A',
@@ -41,3 +51,5 @@ end
 
 p get_grade(95, 90, 93) == "A"
 p get_grade(50, 50, 95) == "D"
+p get_grade(50, 50, 95, 23, 47) == "F"
+p get_grade(60.1)

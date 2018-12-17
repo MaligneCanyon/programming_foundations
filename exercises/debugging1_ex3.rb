@@ -1,4 +1,5 @@
 # should use == instead of = for 'odd_count' evaluation
+
 def valid_series?(nums)
   return false if nums.sum != 47
 

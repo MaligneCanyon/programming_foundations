@@ -18,6 +18,7 @@
 
 def remove_vowels (arr)
   arr.map { |str| str.gsub(/[aeiou]/i,'') }
+  # arr.map { |str| str.delete "aeiouAEIOU" }
 end
 
 p remove_vowels(%w(abcdefghijklmnopqrstuvwxyz)) == %w(bcdfghjklmnpqrstvwxyz)

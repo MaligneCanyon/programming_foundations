@@ -15,6 +15,7 @@
 
 def uppercase?(str)
   str.upcase == str
+  # str.chars.all? {|char| char == char.upcase}
 end
 
 p uppercase?('t') == false

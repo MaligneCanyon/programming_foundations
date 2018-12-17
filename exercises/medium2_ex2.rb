@@ -1,68 +1,58 @@
+# inputs:
+# - str
+# outputs:
+# - boolean
+# reqs:
+# - take a str as input
+# - rtn T or F if the str can be spelt from the letters of a blk (k:v pairs of a hsh)
+# rules:
+# - 13 blks, 2 letters per blk, rep'd by a k:v pair in a hsh
+# - each k:v pair (blk) can only be used once
+# struct:
+# - hsh (to hold the avail letters)
+# algo:
+# - init a hsh w/ the appropriate letters for k:v pairs
+# - upcase the str
+# - split the str into an arr of chars
+# - for each char
+#   - chk the hsh for the letter
+#     - chk the keys
+#     - chk the values
+#   - if the letter is found in the hsh
+#     - delete the k:v pair (it can only be used once)
+#   - otherwise, rtn false
+# - rtn true (if you get to the end of the str, all letters were found)
+
+
 def block_word?(str)
   hsh = {
-    B:'O',   X:'K',   D:'Q',   C:'P',   N:'A',
-    G:'T',   R:'E',   F:'S',   J:'W',   H:'U',
-    V:'I',   L:'Y',   Z:'M'
+    'B' => 'O',
+    'G' => 'T',
+    'V' => 'I',
+    'X' => 'K',
+    'R' => 'E',
+    'L' => 'Y',
+    'D' => 'Q',
+    'F' => 'S',
+    'Z' => 'M',
+    'C' => 'P',
+    'J' => 'W',
+    'N' => 'A',
+    'H' => 'U'
   }
-  str2 = ''
-  str.each_char do |char|
-    hsh.each do |k, v|
-      if v # neither of the block's letters have been used yet
-        if char.upcase == k.to_s # the str char matches the hash key
-          str2 << k.to_s
-          hsh[k] = nil
-        elsif char.upcase == v # the str char matches the hash value
-          str2 << v
-          hsh[k] = nil
-        end
-      end
+
+  str.upcase.chars.each do |char|
+    if hsh.keys.include?(char)
+      hsh.delete(char)
+    elsif hsh.values.include?(char)
+      hsh.delete(hsh.key(char))
+    else
+      return false
     end
     # p hsh
   end
-  # p "str2 == #{str2}"
-  str.upcase == str2
+  true
 end
-
-# ALT
-# inputs:
-# - String (a word to spell)
-# outputs:
-# - Boolean (T or F that the word can be spelt)
-# reqs:
-# - accept a str (word) arg
-# - rtn T or F if the arg can be spelt from the letters on a blk
-# rules:
-# - 13 blks, 2 letters per blk
-# - each key:value pair (blk) can only be used once
-# algo:
-# - init a hash containing the blk letters as key:value pairs (one per blk)
-# - for each letter of the input word
-#   - for each hash element
-#     - if the hash key or hash value contains the letter
-#       - delete the hash key:value pair
-#   - if the letter wasn't found
-#     - return false
-# - return true (end of word reached)
-
-# def block_word?(str)
-#   hash = {
-#       B:'O',   X:'K',   D:'Q',   C:'P',   N:'A',
-#       G:'T',   R:'E',   F:'S',   J:'W',   H:'U',
-#       V:'I',   L:'Y',   Z:'M'
-#   }
-#   str.chars.each do |char|
-#     found = false
-#     hash.each do |k, v|
-#       if k.to_s == char.upcase || v == char.upcase
-#         hash.delete(k)
-#         found = true
-#         break
-#       end
-#     end
-#     return false unless found
-#   end
-#   true
-# end
 
 p block_word?('BBB') == false # can't match more than 1 'B'
 p block_word?('BATCH') == true

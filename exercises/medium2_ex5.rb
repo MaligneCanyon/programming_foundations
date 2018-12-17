@@ -21,8 +21,8 @@
 # - output the triangle type
 
 def triangle(length1, length2, length3)
-  arr = [length1, length2, length3].sort!
-  return :invalid if arr[0] == 0 || arr[0] + arr[1] <= arr[2]
+  arr = [length1, length2, length3].sort
+  return :invalid unless arr[0] > 0 && arr[0] + arr[1] > arr[2]
   return :equilateral if arr[0] == arr[2]
   return :isosceles if arr[0] == arr[1] || arr[1] == arr[2]
   :scalene

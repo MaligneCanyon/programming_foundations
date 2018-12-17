@@ -1,4 +1,5 @@
 # original implementation tries to add a str and an array
+
 def reverse_sentence(sentence)
   words = sentence.split(' ')
   reversed_words = []
@@ -7,6 +8,7 @@ def reverse_sentence(sentence)
   while i < words.length
     # reversed_words = words[i] + reversed_words
     reversed_words.unshift(words[i])
+    # reversed_words = [words[i]] + reversed_words # this works too
     i += 1
   end
 

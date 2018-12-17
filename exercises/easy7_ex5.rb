@@ -11,9 +11,9 @@
 # - Array (to hold str chars)
 # algo:
 # - split the str into chars
-# - for each char
+# - map each char
 #   - alternately set the char case to upper / lower
-# - rtn the resulting str
+# - join the chars and rtn the resulting str
 
 def staggered_case(str)
   str.chars.map.with_index { |c, i| i.even? ? c.upcase : c.downcase }.join

@@ -1,29 +1,26 @@
 # inputs:
-# - Hash (query containing price_min, price_max and brand specifications)
+# - Hash (query containing price_min, price_max, and brand specifications)
 # outputs:
 # - Array containing selection of Hashes from PRODUCTS array
 # reqs:
-# - write a method 'search' that accepts a query hash and returns an array containing a subset of the PRODUCTS
-#   array
-# - the returned array should only contain product hashes that meet the price_min, price_max and brand criteria
-#   specified in the query hash
+# - write a method 'search' that accepts a query hash and returns an array
+#   containing a subset of the PRODUCTS array
+# - the returned array should only contain product hashes that meet the
+#   price_min, price_max and brand criteria specified in the query hash
 # rules:
 # - select product hashes where price between price_min and price_max inclusive
 # datastruct:
-# - Array
+# - arr
 # algo:
-# - for each product hash in PRODUCTS
-#   - if the value of the product key 'name' contains the value of the query key 'q'
-#     - if the value of the product key 'price' is between the values of the query key 'price_min' and
-#      'price_max'
-#      - select the product hash and store it in an array
-# - output the array
-
+# - select from the PRODUCTS arr where
+#   - the product[:name] contains the query[:q] and
+#   - the product[:price] is btwn the query[:price_min] and query[:price_max]
+# - print the selection
 
 PRODUCTS = [
   { name: "Thinkpad x210", price: 220 },
   { name: "Thinkpad x220", price: 250 },
-  { name: "Tehinkpad x250", price: 979 },
+  { name: "Thinkpad x250", price: 979 },
   { name: "Thinkpad x230", price: 300 },
   { name: "Thinkpad x230", price: 330 },
   { name: "Thinkpad x230", price: 350 },
@@ -35,29 +32,12 @@ PRODUCTS = [
   { name: "Dell Latitude", price: 200 },
   { name: "Dell Latitude", price: 650 },
   { name: "Dell Inspiron", price: 300 },
-  { name: "Dell Inspiron", price: 450 },
-]
+  { name: "Dell Inspiron", price: 450 }
+].freeze
 
-
-def search(query_hash)
-
-  # arr = []
-  # PRODUCTS.each do |product_hash|
-  #   if product_hash[:name].downcase.include?(query_hash[:q])
-  #     # puts 'brand found'
-  #     if product_hash[:price].between?(query_hash[:price_min], query_hash[:price_max])
-  #       # puts 'price range found'
-  #       arr << product_hash
-  #     end
-  #   end
-  # end
-
-  arr = PRODUCTS.select do |product_hash|
-    product_hash[:name].downcase.include?(query_hash[:q]) &&
-    product_hash[:price].between?(query_hash[:price_min], query_hash[:price_max])
-  end
-
-  p arr # print the selected product hashes
+def search(query)
+  p PRODUCTS.select { |product| product[:name].downcase.include?(query[:q]) &&
+    product[:price].between?(query[:price_min], query[:price_max]) }
 end
 
 query = {

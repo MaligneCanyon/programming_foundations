@@ -13,6 +13,7 @@
 != means not equal; use in a conditional statement
 !something means not something, as in not the value of user_name
 something! means a dangerous (usually mutating) operation
-?something is meaningless ???
+?something is meaningless ??? (or this is an incomplete expression, where 'something' is the
+  result of whatever preceeds the '?' having a truthy value)
 something? tests whether something has a true or false value
 !!something returns whether something has a truthy or falsey value

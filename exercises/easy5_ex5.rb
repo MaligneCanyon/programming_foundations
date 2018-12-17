@@ -15,14 +15,12 @@
 # - use squeeze to replace runs of spaces w/ a single space
 # - rtn the str
 
-# def alpha_str
-#   (('a'..'z').to_a + ('A'..'Z').to_a).join
+# def alphas
+#   ('a'..'z').to_a + ('A'..'Z').to_a
 # end
 
 # def cleanup(str)
-#   new_str = ''
-#   str.each_char { |char| new_str << (alpha_str.include?(char) ? char : ' ') }
-#   new_str.squeeze
+#   str.chars.map { |char| alphas.include?(char) ? char : ' ' }.join.squeeze
 # end
 
 def cleanup(str)

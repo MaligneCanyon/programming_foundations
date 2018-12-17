@@ -14,7 +14,7 @@
 # - for each array element, append a space and the element length
 
 def word_lengths(str)
-  str.split.map {|word| word << ' ' + word.size.to_s }
+  str.split.map {|word| word + ' ' + word.size.to_s }
 end
 
 p word_lengths("cow sheep chicken") == ["cow 3", "sheep 5", "chicken 7"]

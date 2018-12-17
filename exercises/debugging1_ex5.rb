@@ -11,10 +11,14 @@
 
 cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, :jack, :queen, :king, :ace]
 
-deck = { :hearts   => cards,
-         :diamonds => cards,
-         :clubs    => cards,
-         :spades   => cards }
+deck = { :hearts   => cards.clone,
+         :diamonds => cards.clone,
+         :clubs    => cards.clone,
+         :spades   => cards.clone }
+# deck = { :hearts   => cards,
+#          :diamonds => cards,
+#          :clubs    => cards,
+#          :spades   => cards }
 
 def score(card)
   case card
@@ -30,15 +34,13 @@ end
 
 player_cards = []
 deck.keys.each do |suit|
-  deck[suit] = cards.clone
-  suit_cards = deck[suit]
-  suit_cards.shuffle!
-  player_cards << suit_cards.pop
-  p "suit = #{suit}, suit_cards = #{suit_cards}, player_cards = #{player_cards}"
-  # cards = deck[suit]
-  # cards.shuffle!
-  # player_cards << cards.pop
+  cards = deck[suit]
+  cards.shuffle!
+  player_cards << cards.pop
 end
+
+p player_cards
+p deck
 
 # Determine the score of the remaining cards in the deck
 
@@ -47,7 +49,6 @@ sum = deck.reduce(0) do |sum, (_, cards)|
   # cards.map do |card|
     score(card)
   end
-  p "cards == #{cards}"
   sum += cards.sum
 end
 

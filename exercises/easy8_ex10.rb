@@ -12,20 +12,24 @@
 # struct:
 # - String
 # algo:
-# - determine the string midpoint
+# - rtn '' if the str is empty
+# - determine the str midpoint
 #   - midpoint = str.size / 2
 # - rtn the midpoint char(s)
 #   - str[midpoint] if str.size.odd?
 #   - str[midpoint-1..midpoint] otherwise
 
 def center_of(str)
+  return '' if str.empty?
   mid = str.size / 2
   str.size.odd? ? str[mid] : str[mid - 1..mid]
 end
 
-p center_of('the Universe')
 p center_of('I love ruby') == 'e'
 p center_of('Launch School') == ' '
 p center_of('Launch') == 'un'
 p center_of('Launchschool') == 'hs'
 p center_of('x') == 'x'
+
+p center_of('the Universe')
+p center_of('')

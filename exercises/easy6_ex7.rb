@@ -35,12 +35,16 @@
 #   new_arr
 # end
 
+# def halvsies(arr)
+#   #midpoint_ndx = (arr.size / 2.0).ceil # fp rounding errors ?
+#   midpoint_ndx = arr.size / 2
+#   midpoint_ndx += 1 if arr.size.odd?
+#   [arr[0...midpoint_ndx], arr[midpoint_ndx..-1]]
+# end
+
 def halvsies(arr)
-  #midpoint_ndx = (arr.size / 2.0).ceil # fp rounding errors ?
-  midpoint_ndx = arr.size / 2
-  midpoint_ndx += 1 if arr.size.odd?
-  #p midpoint_ndx
-  [arr[0...midpoint_ndx], arr[midpoint_ndx..-1]]
+  midpt = (arr.size - 1) / 2
+  arr.partition { |v| arr.find_index(v) <= midpt }
 end
 
 p halvsies([1, 2, 3, 4]) == [[1, 2], [3, 4]]
