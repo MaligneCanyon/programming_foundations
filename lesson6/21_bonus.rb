@@ -5,7 +5,8 @@
 # rather than passing the cards themselves; however, this ultimately results
 # in additional calls to the 'busted?' method, so little is gained.
 # Also introduced a subtle bug where the Player total was not evaluated if
-# the Player stayed with only 2 cards ... pain in the ass
+# the Player stayed with only 2 cards ... req'd an extra call to 'calc_total'
+# method to fix ... pain in the ass
 
 # bonus 2
 # The "play again" code only occurs once in this implementation.
@@ -66,9 +67,7 @@ def init_deck
   spades = SUIT.clone
 
   deck = []
-  [clubs, diamonds, hearts, spades].each do |suit|
-    deck += suit.keys
-  end
+  [clubs, diamonds, hearts, spades].each { |suit| deck += suit.keys }
   deck.shuffle!
 
   player_cards = deck.pop(2)
@@ -87,10 +86,18 @@ def busted?(total)
 end
 
 
+def calc_total(cards)
+  total = 0
+  cards.each { |card| total += SUIT[card] }
+  cards.each { |card| total -= 10 if total > 21 && card == 'A' }
+  total
+end
+
+
 def player_choice
   answer = ''
   loop do
-    prompt "Hit or Stay ?"
+    prompt 'Hit or Stay ?'
     answer = gets.chomp
     if answer.downcase.start_with?('h')
       answer = 'hit'
@@ -99,24 +106,10 @@ def player_choice
       answer = 'stay'
       break
     end
-    prompt "Sorry, not a valid choice"
+    prompt 'Sorry, not a valid choice'
   end
   prompt "You chose to #{answer} !"
   answer
-end
-
-
-def calc_total(cards)
-  total = 0
-  cards.each do |card|
-    total += SUIT[card]
-  end
-  cards.each do |card|
-    if total > MAX_BREAK_POINT && card == 'A'
-      total -= 10
-    end
-  end
-  total
 end
 
 
@@ -126,8 +119,7 @@ end
 def player_turn(deck, player_cards)
   total = calc_total(player_cards) # req'd for bonus 1
   loop do
-    answer = player_choice
-    break if answer == 'stay'
+    break if player_choice == 'stay'
     player_cards << deck.pop
     total = calc_total(player_cards)
     display_hand(PLAYER, player_cards, total)
@@ -200,7 +192,7 @@ loop do
       # arguments for the 'compare_cards' method are now the total value of the
       # hands, rather than the hands themselves
       # bonus 4
-      # 'compare_cards' now  returns a string representing the winner
+      # 'compare_cards' now returns a string representing the winner
       # compare_cards(player_total, dealer_total)
       winner = compare_cards(player_total, dealer_total)
     end
@@ -212,7 +204,7 @@ loop do
   else
     wins[winner] += 1
     prompt "#{winner} won !"
-    if wins.values.max == REQUIRED_WINS
+    if wins[winner] == REQUIRED_WINS
       prompt "#{winner} is the champion !"
       break
     end
@@ -220,10 +212,8 @@ loop do
   prompt  "#{wins.keys[0]} has #{wins.values[0]} win(s); " \
           "#{wins.keys[1]} has #{wins.values[1]}."
 
-
-  prompt "Do you want to play again ? (y or n)"
-  answer = gets.chomp
-  break unless answer.downcase.start_with?('y')
+  prompt 'Do you want to play again ? (y or n)'
+  break unless gets.chomp.downcase.start_with?('y')
 end
 
 # bonus 5

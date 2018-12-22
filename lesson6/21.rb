@@ -41,9 +41,7 @@ def init_deck
   spades = SUIT.clone
 
   deck = []
-  [clubs, diamonds, hearts, spades].each do |suit|
-    deck += suit.keys
-  end
+  [clubs, diamonds, hearts, spades].each { |suit| deck += suit.keys }
   deck.shuffle!
 
   player_cards = deck.pop(2)
@@ -63,10 +61,18 @@ def busted?(total)
 end
 
 
+def calc_total(cards)
+  total = 0
+  cards.each { |card| total += SUIT[card] }
+  cards.each { |card| total -= 10 if total > 21 && card == 'A' }
+  total
+end
+
+
 def player_choice
   answer = ''
   loop do
-    prompt "Hit or Stay ?"
+    prompt 'Hit or Stay ?'
     answer = gets.chomp
     if answer.downcase.start_with?('h')
       answer = 'hit'
@@ -75,35 +81,19 @@ def player_choice
       answer = 'stay'
       break
     end
-    prompt "Sorry, not a valid choice"
+    prompt 'Sorry, not a valid choice'
   end
   prompt "You chose to #{answer} !"
   answer
 end
 
 
-def calc_total(cards)
-  total = 0
-  cards.each do |card|
-    total += SUIT[card]
-  end
-  cards.each do |card|
-    if total > 21 && card == 'A'
-      total -= 10
-    end
-  end
-  total
-end
-
-
 def player_turn(deck, player_cards)
   loop do
-    answer = player_choice
-    # p answer
-    break if answer == 'stay'
+    break if player_choice == 'stay'
     player_cards << deck.pop
     total = calc_total(player_cards)
-    display_hand("Player", player_cards, total)
+    display_hand('Player', player_cards, total)
     return [] if busted?(total)
   end
   player_cards
@@ -113,7 +103,7 @@ end
 def dealer_turn(deck, dealer_cards)
   loop do
     total = calc_total(dealer_cards)
-    display_hand("Dealer", dealer_cards, total)
+    display_hand('Dealer', dealer_cards, total)
     return [] if busted?(total)
     break if total > 16
     dealer_cards << deck.pop
@@ -133,11 +123,11 @@ loop do
   deck, player_cards, dealer_cards = init_deck
 
   player_cards = player_turn(deck, player_cards)
-  if player_cards == [] # player busted
+  if player_cards == [] # prompt 'Player busted !'
     prompt RESULT[0] # "Dealer wins !"
   else
     dealer_cards = dealer_turn(deck, dealer_cards)
-    if dealer_cards == [] # dealer busted
+    if dealer_cards == [] # prompt 'Dealer busted !'
       prompt RESULT[2] # "Player wins !"
     else
       compare_cards(player_cards, dealer_cards)
@@ -145,9 +135,8 @@ loop do
   end
   # puts "size of deck == #{deck.size}\n#{deck}"
 
-  prompt "Do you want to play again ? (y or n)"
-  answer = gets.chomp
-  break unless answer.downcase.start_with?('y')
+  prompt 'Do you want to play again ? (y or n)'
+  break unless gets.chomp.downcase.start_with?('y')
 end
 
-prompt "Thanks for playing Twenty-One !"
+prompt 'Thanks for playing Twenty-One !'
