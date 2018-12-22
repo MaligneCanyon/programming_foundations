@@ -4,12 +4,12 @@
 
 2.
 - looking at R. docs for Array#count,
-"If a block is given, counts the number of elements for which the block returns a true value."
+  "If a block is given, counts the number of elements for which the block returns a true value."
 - so only elements with str.length < 4 are counted
 
 3.
 - return value is [1,2,3]
-- rtn val of 'puts num' is nil, so each element is 'rejected' (placed in the return value array)
+- rtn val of 'puts num' and blk is always nil, so none of the elements are 'rejected'
 
 4.
 - return value is { 'a': 'ant', 'b': 'bear', 'c': 'cat' }
@@ -17,7 +17,8 @@
 - the corresponding 'value' is the value of the current array element
 
 5.
-- hash.shift removes (shifts out) the 1st hash element (returns the shifted-out element)
+- hash.shift removes (shifts out) the 1st hash element
+  (returns the shifted-out element as a two-element array)
 - try it out in irb (or read the R. docs)
 
 6.
@@ -25,10 +26,11 @@
 - pop (w/o an optional arg) returns the last array element 'caterpillar', which has 11 chars
 
 7.
-- the blk's rtn val is either T or F, depending on whether or not the 'num' is odd (num.odd? is the last evaluated statement in the blk); specifically, the blk returns T, F, T
+- the blk's rtn val is either T or F, depending on whether or not the 'num' is odd (num.odd? is the last
+  evaluated statement in the blk); specifically, the blk returns T, F, T
 - the rtn value of any? is T in this example (since 1 and 3 are infact odd nums)
-- the output (from the puts num statement) is '1'; iteration terminates once the blk returns a truthy value (no need
-  to chk remaining elements)
+- the output (from the puts num statement) is '1'; iteration terminates once the blk returns a truthy value
+  (no need to chk remaining elements)
 
 8.
 - arr.take(n) returns the first n elements of the array; the original array is not mutated
@@ -36,11 +38,11 @@
 
 9.
 - rtn value is [nil, 'bear']
-- hash.map { |k, v| k or v expr } returns a single array of k OR v values; the array will contain nil elements where the
-  expr evaluated to F
-- the expr is a v expr, ie. values are returned (in this case nil or v if v.size > 3)
+- hash.map { |k, v| k or v expr } returns a single array of values; the array will contain nil elements where
+  the expr evaluates to F
+- in this case, the expr evaluates to T if v.size > 3
 
 10.
 - rtn val is [1, nil, nil]
-- rtn val of puts statement is nil, so nil is returned for elements w/ value > 1; otherwise, the element value itself
-  is returned
+- rtn val of puts statement is nil, so nil is returned for elements w/ value > 1; otherwise, the element value
+  itself is returned

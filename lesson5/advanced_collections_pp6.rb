@@ -7,5 +7,5 @@ munsters = {
 }
 
 munsters.each do |k, v|
-  p "#{k} is a #{v["age"]}-year-old #{v["gender"]}."
+  puts "#{k} is a #{v["age"]}-year-old #{v["gender"]}."
 end

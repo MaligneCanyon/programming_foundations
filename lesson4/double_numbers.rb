@@ -1,6 +1,6 @@
 def double_numbers!(numbers)
+  # numbers.each_index {|ndx| numbers[ndx] *= 2}
   counter = 0
-
   loop do
     break if counter == numbers.size
     numbers[counter] *= 2

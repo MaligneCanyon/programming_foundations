@@ -8,5 +8,6 @@ munsters = {
 
 # p munsters.values[:age].reduce(:+)
 sum = 0
-munsters.values.each { |hsh| sum += hsh["age"] if hsh["gender"] == "male" }
+# munsters.values.each { |hsh| sum += hsh["age"] if hsh["gender"] == "male" }
+munsters.each_value { |hsh| sum += hsh["age"] if hsh["gender"] == "male" }
 p sum
