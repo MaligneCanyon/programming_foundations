@@ -89,7 +89,7 @@ end
 def calc_total(cards)
   total = 0
   cards.each { |card| total += SUIT[card] }
-  cards.each { |card| total -= 10 if total > 21 && card == 'A' }
+  cards.each { |card| total -= 10 if total > MAX_BREAK_POINT && card == 'A' }
   total
 end
 
@@ -114,7 +114,7 @@ end
 
 
 # bonus 1
-# the player_turn method can return the total value of the dealer's cards,
+# the player_turn method can return the total value of the player's cards,
 # rather than the actual cards
 def player_turn(deck, player_cards)
   total = calc_total(player_cards) # req'd for bonus 1
